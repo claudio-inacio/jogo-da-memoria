@@ -1,5 +1,5 @@
 # memorize-colors
-🎮 Jogo da Memória por Cores
+🎮 Memorize colors Jogo da Memória por Cores
 
 Um projeto interativo inspirado no clássico Simon Game, desenvolvido com JavaScript, TypeScript e testes automatizados.
 O objetivo do jogo é memorizar e reproduzir a sequência de cores que vão ascendendo a cada rodada.
