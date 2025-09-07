@@ -109,12 +109,18 @@ div {
 }
 #pontuacao-atual {
   margin: 15px 0px;
+  display: flex;
+  flex-direction: row;
 }
+
 .pontuacao-item {
   display: flex;
   flex-direction: row;
   margin: 5px;
   align-items: center;
+}
+#pontos{
+    margin-left: 10px;
 }
 
 #historico-pontuacoes {
@@ -135,10 +141,12 @@ div {
   /* background-color: #07b39b; */
   display: flex;
   justify-content: space-between;
+  font-weight: bolder;
+  font-size: large;
 }
-#historico-nome-pontuador {
+#historico-nome-pontuador{
 }
-#historico-quantidade-pontos {
+#historico-quantidade-pontos{
 }
 
 .triangulo-cima {
