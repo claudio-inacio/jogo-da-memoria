@@ -19,7 +19,241 @@ div {
   justify-content: center;
 }
 
-/* TIULO E PLACAR DE PONTUAÇÕES */
+/*ESTILIZAÇÃO PADRÃO*/
+#cabecalho {
+  font-weight: 100;
+  padding: 10px;
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  min-width: 300px;
+  flex-direction: column;
+}
+#tittle-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#game-tittle {
+  font-weight: bolder;
+  color: gray;
+  font-size: clamp(
+    28px,
+    10vw,
+    70px
+  ); /*clamp recebe valor minimo, ideal, maximo para trabalhar com mobile */
+  font-weight: 600;
+}
+#game-sub-tittle {
+  font-weight: bolder;
+  color: gray;
+  font-size: clamp(14px, 4.8vw, 20px);
+  font-weight: 600;
+}
+
+#placar-container {
+  width: 100%;
+  display: flex;
+}
+
+#placar-component {
+  border-radius: 5px;
+  background: linear-gradient(145deg, #3b3b3b, #222222);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100%;
+  padding: 10px 0px;
+  min-width: 100%;
+}
+
+.placar-tittle-container {
+  background: linear-gradient(145deg, #3b3b3b, #222222);
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  border-radius: 5px;
+  width: 80%;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+.placar-tittle {
+  font-size: clamp(2px, 6vw, 25px);
+}
+
+#pontuacoes {
+  width: 80%;
+  text-align: center;
+}
+#pontuacao-atual {
+  margin: 10px 0px;
+  font-size: clamp(5px, 3.8vw, 20px);
+}
+
+.pontuacao-item {
+  font-size: clamp(5px, 3.9vw, 20px);
+  justify-content: center;
+  align-items: center;
+}
+#pontos {
+  margin-left: 10px;
+  margin-right: 3px;
+  font-size: clamp(5px, 4vw, 20px);
+}
+
+.placar-tittle-container.gold-tittle {
+  background: linear-gradient(145deg, #d4af37, #f5c731, #c8a300);
+}
+
+#historico-pontuacoes {
+  text-align: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#lista-historico-pontuacao {
+  list-style: none;
+  width: 75%;
+}
+
+.item-historico-pontuacao {
+  gap: 6px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bolder;
+  font-size: large;
+  font-size: 1rem;
+}
+.historico-nome-pontuador {
+}
+.historico-quantidade-pontos {
+}
+/*FIM ESTILIZACAO PADRÃO*/
+
+@media (max-width: 480px) {
+  #cabecalho {
+  }
+  #tittle-container {
+    text-align: center;
+    gap: 5px;
+  }
+  #placar-container {
+  }
+  #placar-component {
+  }
+
+  .placar-tittle-container {
+  }
+
+  #placar-tittle {
+  }
+
+  #pontuacoes {
+    margin: 5px 0px;
+  }
+  .pontuacao-item {
+    margin: 4px 0;
+  }
+  #pontos {
+  }
+  .placar-tittle-container.gold-tittle {
+  }
+
+  #historico-pontuacoes {
+  }
+
+  #lista-historico-pontuacao {
+  }
+
+  .item-historico-pontuacao {
+  }
+
+  .historico-nome-pontuador {
+  }
+  .historico-quantidade-pontos {
+  }
+}
+
+/*FIM MOBILE*/
+
+/*MOBILE PARA TABLET*/
+
+/* @media (max-width: 900px) {
+  #cabecalho {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+  }
+  #tittle-container {
+    width: 100%;
+    max-width: 700px;
+    min-width: 0;
+    margin-left: 0;
+    padding-top: 24px;
+    height: auto;
+  }
+
+  #placar-container {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    padding-right: 0;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  #placar-component {
+    width: min(640px, 100%);
+    min-width: 0;
+    padding: 16px;
+  }
+
+  #placar-tittle {
+    width: 100%;
+  }
+
+  #pontuacoes {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .pontuacao-item {
+    gap: 8px;
+  }
+
+  #lista-historico-pontuacao {
+    padding: 0;
+  }
+
+  #item-historico-pontuacao {
+    font-size: 1rem;
+  }
+} */
+/**/
+
+/*CELULARES MAIORES*/
+/* @media (max-width: 768px) {
+  #tittle-container {
+    padding-top: 16px;
+    text-align: center;
+  }
+  #placar-component {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  #item-historico-pontuacao {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+} */
+/**/
+
+/*MOBILE*/
+
+/*
 
 #cabecalho {
   display: flex;
@@ -41,113 +275,7 @@ div {
   flex-direction: column;
   height: 350px;
   align-items: center;
-}
-
-#game-tittle {
-  font-family: 'Raleway', sans-serif;
-  font-weight: bolder;
-  color: gray;
-  padding-top: 60px;
-  font-size: 70px;
-  font-weight: 600;
-}
-#game-sub-tittle {
-  font-family: 'Raleway', sans-serif;
-  font-weight: bolder;
-  color: gray;
-  font-size: 20px;
-  float: left;
-  font-weight: 600;
-}
-
-#placar-container {
-  min-width: 400px;
-  width: 100%;
-  height: 300px;
-  display: flex;
-  flex-direction: row;
-  padding-right: 50px;
-  align-items: start;
-  justify-content: flex-end;
-}
-
-#placar-component {
-  min-width: 400px;
-  width: 30%;
-  padding: 20px;
-  border-radius: 10px;
-  background: linear-gradient(145deg, #3b3b3b, #222222);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  height: 300px;
-}
-
-#placar-tittle {
-  background: linear-gradient(145deg, #3b3b3b, #222222);
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-  color: white;
-  border-radius: 5px;
-  width: 80%;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
-}
-#placar-tittle.gold-tittle {
-  background: linear-gradient(145deg, #d4af37, #f5c731, #c8a300);
-}
-#pontuacoes {
-  width: 80%;
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  margin: 5px;
-  margin-bottom: 25px;
-  padding: 5px;
-}
-#pontuacao-atual {
-  margin: 15px 0px;
-  display: flex;
-  flex-direction: row;
-}
-
-.pontuacao-item {
-  display: flex;
-  flex-direction: row;
-  margin: 5px;
-  align-items: center;
-}
-#pontos{
-    margin-left: 10px;
-}
-
-#historico-pontuacoes {
-  /* border: 1px wheat solid ; */
-  text-align: center;
-  padding: 5px;
-  margin-top: 20px;
-  width: 70%;
-}
-
-#lista-historico-pontuacao {
-  list-style: none;
-  /* padding: 5px; */
-}
-
-#item-historico-pontuacao {
-  margin: 10px;
-  /* background-color: #07b39b; */
-  display: flex;
-  justify-content: space-between;
-  font-weight: bolder;
-  font-size: large;
-}
-#historico-nome-pontuador{
-}
-#historico-quantidade-pontos{
-}
+}*/
 
 .triangulo-cima {
   width: 0px;
@@ -156,8 +284,7 @@ div {
   border-right: 62.5px solid transparent;
   cursor: pointer;
 }
-
-.triangulo-cima-aceso {
+*/ .triangulo-cima-aceso {
   transition: all 0.6s;
   border-bottom: 375px solid rgb(0, 177, 0);
 }
