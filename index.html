@@ -1,61 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/css/style.css">
-    <title > Memorize Colors</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <title>Memorize Colors</title>
+  </head>
+  <body>
     <header id="cabecalho">
-        <section id="tittle-container">
+      <section id="tittle-container">
+        <h1 id="game-tittle" class="rainbow-text">Memorize Colors</h1>
+        <h4 id="game-sub-tittle">Treine sua memoria todos os dias</h4>
+      </section>
 
-            <h1 id="game-tittle" class="rainbow-text">Memorize Colors</h1>
-            <h4 id="game-sub-tittle">Treine sua memoria todos os dias</h4>
-        </section>
-            
-        
-
-            <section id="placar-container" >
-                <div id="placar-component" class="gradient-border">
-                    <div id="placar-tittle">
-                        <h2>PONTUAÇÃO</h2>
-                    </div>
-                    <section id="pontuacoes">
-                        <div id="pontuacao-atual" class="pontuacao-item">
-
-                            <h3>PARTIDA ATUAL:  15</h3>
-                            <b></b>
-                        </div>
-                        <div class="pontuacao-item">
-                            <h5>
-                                ULTIMA PONTUAÇÃO: 6
-                            </h5>
-
-                        </div>
-                    </section>
-                       <div  class="gold-tittle" id="placar-tittle">
-                        <h2>TOP 3</h2>
-                    </div>
-                    <section class="" id="historico-pontuacoes">
-                            <ol class="lista-pontuacao">
-                                <li>
-                                    1° FERNANDO SILVA
-                                </li>
-                                <li>
-                                    2° FERNANDO SILVA
-                                </li>
-                                <li>
-                                    3° FERNANDO SILVA
-                                </li>
-                            </ol>
-                        </section>
-            </section>
+      <section id="placar-container">
+        <div id="placar-component" class="gradient-border">
+          <div id="placar-tittle">
+            <h2>PONTUAÇÃO</h2>
+          </div>
+                 <section id="pontuacoes">
+            <div id="pontuacao-atual" class="pontuacao-item">
+              <h3>PARTIDA ATUAL: 15</h3>
+              <b></b>
+            </div>
+            <div class="pontuacao-item">
+              <h5>ULTIMA PONTUAÇÃO: 6</h5>
+            </div>
+          </section>
+          <div class="gold-tittle" id="placar-tittle">
+            <h2>TOP 3</h2>
+          </div>
+          <section class="" id="historico-pontuacoes">
+            <ol id="lista-historico-pontuacao">
+              <li id="item-historico-pontuacao">
+                <div id="historico-nome-pontuador">
+                  <p>1° fernanda silva</p>
+                </div>
+                <div id="historico-quantidade-pontos">
+                  <p>26 pontos</p>
+                </div>
+              </li>
+              <li id="item-historico-pontuacao">
+                <div id="historico-nome-pontuador">
+                  <p>2° mike</p>
+                </div>
+                <div id="historico-quantidade-pontos">
+                  <p>15 pontos</p>
+                </div>
+              </li>
+              <li id="item-historico-pontuacao">
+                <div id="historico-nome-pontuador">
+                  <p>3° matheus</p>
+                </div>
+                <div id="historico-quantidade-pontos">
+                  <p>7 pontos</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+        </div>
+      </section>
     </header>
     <main>
-    <button class="triangulo-cima triangulo-cima-apagado" id="1" aria-label="Botão de cima"></button>
+      <button
+        class="triangulo-cima triangulo-cima-apagado"
+        id="1"
+        aria-label="Botão de cima"
+      ></button>
     </main>
-</body>
+  </body>
 </html>

@@ -2,242 +2,234 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 /* reset css */
-*{
-    margin: 0px;
-    padding: 0px;
+* {
+  margin: 0px;
+  padding: 0px;
 }
 
-
-body{
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.868);
-    color: white;
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.868);
+  color: white;
 }
 
-div{
-
-    display: flex;
-    justify-content: center;
-      
+div {
+  display: flex;
+  justify-content: center;
 }
 
 /* TIULO E PLACAR DE PONTUAÇÕES */
 
-#cabecalho{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+#cabecalho {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#tittle-container{
-    width: 30%;
-    padding-top: 40px;
-    margin-left: 100px;
-    max-width: 700px;
-    min-width: 350px;
-    display: flex;
-    text-align: center;
-    justify-content: start;    
-    display: flex;
-    flex-direction: column;
-    height: 350px;    
-    align-items: center;
+#tittle-container {
+  width: 30%;
+  padding-top: 40px;
+  margin-left: 100px;
+  max-width: 700px;
+  min-width: 350px;
+  display: flex;
+  text-align: center;
+  justify-content: start;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  align-items: center;
 }
 
-#game-tittle{
-    font-family: 'Raleway', sans-serif;
-    font-weight: bolder;  
-    color: gray;
-    padding-top: 60px;
-    font-size: 70px;    
-    font-weight: 600;
+#game-tittle {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+  color: gray;
+  padding-top: 60px;
+  font-size: 70px;
+  font-weight: 600;
 }
-#game-sub-tittle{
-    font-family: 'Raleway', sans-serif;
-    font-weight: bolder;  
-    color: gray;
-    font-size: 20px;
-    float: left;
-    font-weight: 600;
-}
-
-#placar-container{
-    min-width: 400px;
-    width: 100%;
-    height: 300px;
-    display: flex;
-    flex-direction: row;
-    padding-right: 50px;
-    align-items: start;
-    justify-content: flex-end;
+#game-sub-tittle {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+  color: gray;
+  font-size: 20px;
+  float: left;
+  font-weight: 600;
 }
 
-#placar-component{
-    min-width: 400px;
-    width: 30%;
-    padding: 20px;
-    border-radius: 10px;
-    background: linear-gradient(145deg, #3b3b3b, #222222);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    height: 300px;
+#placar-container {
+  min-width: 400px;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  padding-right: 50px;
+  align-items: start;
+  justify-content: flex-end;
 }
 
-#placar-tittle{
-    background: linear-gradient(145deg, #3b3b3b, #222222);
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    border-radius: 5px;
-    width: 80%;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);  
-}
-#placar-tittle.gold-tittle{    
-    background: linear-gradient(145deg, #d4af37, #f5c731, #c8a300);
-}
-#pontuacoes{
-    width: 80%;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    margin-bottom: 25px;
-    padding: 5px;
-    
-}
-#pontuacao-atual{
-    margin: 15px 0px;
-}
-.pontuacao-item{
-    display: flex;
-    flex-direction: row;
-    margin: 5px;
-    align-items: center;
+#placar-component {
+  min-width: 400px;
+  width: 30%;
+  padding: 20px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #3b3b3b, #222222);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 300px;
 }
 
-#historico-pontuacoes{
- /* border: 1px wheat solid ; */
- text-align: center;
- padding: 10px;
- margin-top: 20px;
- width: 70%;
+#placar-tittle {
+  background: linear-gradient(145deg, #3b3b3b, #222222);
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  border-radius: 5px;
+  width: 80%;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+#placar-tittle.gold-tittle {
+  background: linear-gradient(145deg, #d4af37, #f5c731, #c8a300);
+}
+#pontuacoes {
+  width: 80%;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  margin-bottom: 25px;
+  padding: 5px;
+}
+#pontuacao-atual {
+  margin: 15px 0px;
+}
+.pontuacao-item {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  align-items: center;
 }
 
-.lista-pontuacao{
-    list-style: none;
-    padding: 5px;
+#historico-pontuacoes {
+  /* border: 1px wheat solid ; */
+  text-align: center;
+  padding: 5px;
+  margin-top: 20px;
+  width: 70%;
 }
 
-li{
-    margin: 10px
+#lista-historico-pontuacao {
+  list-style: none;
+  /* padding: 5px; */
 }
 
-
-
-.triangulo-cima{
-    
-    width: 0px;
-    height: 0px;
-    border-left: 62.5px solid transparent;
-    border-right: 62.5px solid transparent;
-    cursor: pointer;
+#item-historico-pontuacao {
+  margin: 10px;
+  /* background-color: #07b39b; */
+  display: flex;
+  justify-content: space-between;
+}
+#historico-nome-pontuador {
+}
+#historico-quantidade-pontos {
 }
 
-.triangulo-cima-aceso{
-    transition: all .6s;
-    border-bottom: 375px solid rgb(0, 177, 0);
+.triangulo-cima {
+  width: 0px;
+  height: 0px;
+  border-left: 62.5px solid transparent;
+  border-right: 62.5px solid transparent;
+  cursor: pointer;
 }
 
-.triangulo-cima-apagado{
-    border-bottom: 275px solid rgb(0, 85, 0);
+.triangulo-cima-aceso {
+  transition: all 0.6s;
+  border-bottom: 375px solid rgb(0, 177, 0);
 }
 
-
-
-
-
+.triangulo-cima-apagado {
+  border-bottom: 275px solid rgb(0, 85, 0);
+}
 
 .gradient-border {
-
-    --borderWidth: 3px;
-    background: #1D1F20;
-    position: relative;
-    border-radius: var(--borderWidth);  
-
+  --borderWidth: 3px;
+  background: #1d1f20;
+  position: relative;
+  border-radius: var(--borderWidth);
 }
 
 .gradient-border:after {
-
-    content: '';
-    position: absolute;
-    top: calc(-1 * var(--borderWidth));
-    left: calc(-1 * var(--borderWidth));
-    height: calc(100% + var(--borderWidth) * 2);
-    width: calc(100% + var(--borderWidth) * 2);
-    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-    border-radius: calc(2 * var(--borderWidth));
-    z-index: -1;
-    animation: animatedgradient 3s ease alternate infinite;
-    background-size: 300% 300%;
-
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
 }
-   
+
 @keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
 
-    0% {
+  50% {
+    background-position: 100% 50%;
+  }
 
-        background-position: 0% 50%;
-
-    }
-
-    50% {
-
-        background-position: 100% 50%;
-
-    }
-
-    100% {
-
-        background-position: 0% 50%;
-
-    }
-    
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .rainbow-text {
-
-    background-image: repeating-linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);
-    background-size: 800% 800%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbow 8s ease infinite;
-
+  background-image: repeating-linear-gradient(
+    45deg,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 8s ease infinite;
 }
 
 @keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
 
-    0% {
+  50% {
+    background-position: 100% 25%;
+  }
 
-        background-position: 0% 50%;
-
-    }
-
-    50% {
-
-        background-position: 100% 25%;
-
-    }
-
-    100% {
-
-        background-position: 0% 50%;
-
-    }
-
+  100% {
+    background-position: 0% 50%;
+  }
 }
