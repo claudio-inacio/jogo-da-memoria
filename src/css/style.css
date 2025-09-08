@@ -139,6 +139,8 @@ div {
     gap: 5px;
   }
   #placar-container {
+    width: 40%;
+    min-width: 20%;
   }
   #placar-component {
   }
@@ -177,7 +179,7 @@ div {
 
 /*FIM MOBILE*/
 
-/*MOBILE PARA TABLET*/
+/*TABLET*/
 
 @media (min-width: 599px) and (max-width: 900px) {
   #cabecalho {
@@ -246,47 +248,68 @@ div {
 
 /*FIM TABLET*/
 
-/*MOBILE*/
+/*DESKTOP*/
+@media (min-width: 901px) {
+  #cabecalho {
+    flex-direction: row;
+  }
+  #tittle-container {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    display: fle;
+    gap: 5px;
+  }
+  #game-tittle {
+    font-size: clamp(28px, 8vw, 70px);
+  }
+  #placar-container {
+    width: 60%;
+    flex-direction: row;
+    justify-content: center;
+    
+  }
+  #placar-component {
+     width: 400px;
+     min-width: 400px;
+  }
 
-/*
+  .placar-tittle-container {
+  }
 
-#cabecalho {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  #placar-tittle {
+  }
+
+  #pontuacoes {
+    margin: 5px 0px;
+  }
+  .pontuacao-item {
+    margin: 4px 0;
+  }
+  #pontos {
+  }
+  .placar-tittle-container.gold-tittle {
+  }
+
+  #historico-pontuacoes {
+  }
+
+  #lista-historico-pontuacao {
+  }
+
+  .item-historico-pontuacao {
+  }
+
+  .historico-nome-pontuador {
+  }
+  .historico-quantidade-pontos {
+  }
 }
 
-#tittle-container {
-  width: 30%;
-  padding-top: 40px;
-  margin-left: 100px;
-  max-width: 700px;
-  min-width: 350px;
-  display: flex;
-  text-align: center;
-  justify-content: start;
-  display: flex;
-  flex-direction: column;
-  height: 350px;
-  align-items: center;
-}*/
+/*FIM DESKTOP*/
 
-.triangulo-cima {
-  width: 0px;
-  height: 0px;
-  border-left: 62.5px solid transparent;
-  border-right: 62.5px solid transparent;
-  cursor: pointer;
-}
-*/ .triangulo-cima-aceso {
-  transition: all 0.6s;
-  border-bottom: 375px solid rgb(0, 177, 0);
-}
 
-.triangulo-cima-apagado {
-  border-bottom: 275px solid rgb(0, 85, 0);
-}
+
 
 .gradient-border {
   --borderWidth: 3px;
