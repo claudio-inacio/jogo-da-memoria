@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* reset css */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.868);
+  color: white;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+}
+
+/*ESTILIZAÇÃO PADRÃO*/
+#cabecalho {
+  font-weight: 100;
+  padding: 10px;
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  min-width: 300px;
+  flex-direction: column;
+}
+#tittle-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#game-tittle {
+  font-weight: bolder;
+  color: gray;
+  font-size: clamp(
+    28px,
+    10vw,
+    70px
+  ); /*clamp recebe valor minimo, ideal, maximo para trabalhar com mobile */
+  font-weight: 600;
+}
+#game-sub-tittle {
+  font-weight: bolder;
+  color: gray;
+  font-size: clamp(14px, 4.8vw, 20px);
+  font-weight: 600;
+}
+
+#placar-container {
+  width: 100%;
+  display: flex;
+}
+
+#placar-component {
+  border-radius: 5px;
+  background: linear-gradient(145deg, #3b3b3b, #222222);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100%;
+  padding: 10px 0px;
+  min-width: 100%;
+}
+
+.placar-tittle-container {
+  background: linear-gradient(145deg, #3b3b3b, #222222);
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  border-radius: 5px;
+  width: 80%;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+.placar-tittle {
+  font-size: clamp(2px, 6vw, 25px);
+}
+
+#pontuacoes {
+  width: 80%;
+  text-align: center;
+}
+#pontuacao-atual {
+  margin: 10px 0px;
+  font-size: clamp(5px, 3.8vw, 20px);
+}
+
+.pontuacao-item {
+  font-size: clamp(5px, 3.9vw, 20px);
+  justify-content: center;
+  align-items: center;
+}
+#pontos {
+  margin-left: 10px;
+  margin-right: 3px;
+  font-size: clamp(5px, 4vw, 20px);
+}
+
+.placar-tittle-container.gold-tittle {
+  background: linear-gradient(145deg, #d4af37, #f5c731, #c8a300);
+}
+
+#historico-pontuacoes {
+  text-align: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#lista-historico-pontuacao {
+  list-style: none;
+  width: 75%;
+}
+
+.item-historico-pontuacao {
+  gap: 6px;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bolder;
+  font-size: large;
+  font-size: 1rem;
+}
+.historico-nome-pontuador {
+}
+.historico-quantidade-pontos {
+}
+/*FIM ESTILIZACAO PADRÃO*/
+
+@media (max-width: 480px) {
+  #cabecalho {
+  }
+  #tittle-container {
+    text-align: center;
+    gap: 5px;
+  }
+  #placar-container {
+  }
+  #placar-component {
+  }
+
+  .placar-tittle-container {
+  }
+
+  #placar-tittle {
+  }
+
+  #pontuacoes {
+    margin: 5px 0px;
+  }
+  .pontuacao-item {
+    margin: 4px 0;
+  }
+  #pontos {
+  }
+  .placar-tittle-container.gold-tittle {
+  }
+
+  #historico-pontuacoes {
+  }
+
+  #lista-historico-pontuacao {
+  }
+
+  .item-historico-pontuacao {
+  }
+
+  .historico-nome-pontuador {
+  }
+  .historico-quantidade-pontos {
+  }
+}
+
+/*FIM MOBILE*/
+
+/*MOBILE PARA TABLET*/
+
+/* @media (max-width: 900px) {
+  #cabecalho {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+  }
+  #tittle-container {
+    width: 100%;
+    max-width: 700px;
+    min-width: 0;
+    margin-left: 0;
+    padding-top: 24px;
+    height: auto;
+  }
+
+  #placar-container {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    padding-right: 0;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  #placar-component {
+    width: min(640px, 100%);
+    min-width: 0;
+    padding: 16px;
+  }
+
+  #placar-tittle {
+    width: 100%;
+  }
+
+  #pontuacoes {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .pontuacao-item {
+    gap: 8px;
+  }
+
+  #lista-historico-pontuacao {
+    padding: 0;
+  }
+
+  #item-historico-pontuacao {
+    font-size: 1rem;
+  }
+} */
+/**/
+
+/*CELULARES MAIORES*/
+/* @media (max-width: 768px) {
+  #tittle-container {
+    padding-top: 16px;
+    text-align: center;
+  }
+  #placar-component {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  #item-historico-pontuacao {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+} */
+/**/
+
+/*MOBILE*/
+
+/*
+
+#cabecalho {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#tittle-container {
+  width: 30%;
+  padding-top: 40px;
+  margin-left: 100px;
+  max-width: 700px;
+  min-width: 350px;
+  display: flex;
+  text-align: center;
+  justify-content: start;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  align-items: center;
+}*/
+
+.triangulo-cima {
+  width: 0px;
+  height: 0px;
+  border-left: 62.5px solid transparent;
+  border-right: 62.5px solid transparent;
+  cursor: pointer;
+}
+*/ .triangulo-cima-aceso {
+  transition: all 0.6s;
+  border-bottom: 375px solid rgb(0, 177, 0);
+}
+
+.triangulo-cima-apagado {
+  border-bottom: 275px solid rgb(0, 85, 0);
+}
+
+.gradient-border {
+  --borderWidth: 3px;
+  background: #1d1f20;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.rainbow-text {
+  background-image: repeating-linear-gradient(
+    45deg,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 8s ease infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 25%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
