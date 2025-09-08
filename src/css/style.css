@@ -43,7 +43,7 @@ div {
   ); /*clamp recebe valor minimo, ideal, maximo para trabalhar com mobile */
   font-weight: 600;
 }
-#game-sub-tittle {
+.game-sub-tittle {
   font-weight: bolder;
   color: gray;
   font-size: clamp(14px, 4.8vw, 20px);
@@ -131,7 +131,7 @@ div {
 }
 /*FIM ESTILIZACAO PADRÃO*/
 
-@media (max-width: 480px) {
+@media (max-width: 598px) {
   #cabecalho {
   }
   #tittle-container {
@@ -179,77 +179,72 @@ div {
 
 /*MOBILE PARA TABLET*/
 
-/* @media (max-width: 900px) {
+@media (min-width: 599px) and (max-width: 900px) {
   #cabecalho {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding: 16px;
   }
   #tittle-container {
-    width: 100%;
-    max-width: 700px;
-    min-width: 0;
-    margin-left: 0;
-    padding-top: 24px;
-    height: auto;
+    text-align: start;
+    flex-direction: column;
+    gap: 5px;
+    width: 70%;
   }
 
+  #game-tittle {
+    font-size: clamp(28px, 6vw, 100px);
+  }
+  #game-sub-tittle {
+    font-size: clamp(14px, 0.3vw, 20px);
+    padding-left: 50px;
+  }
   #placar-container {
-    width: 100%;
-    min-width: 0;
-    justify-content: center;
-    padding-right: 0;
-    gap: 16px;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
   }
 
   #placar-component {
-    width: min(640px, 100%);
-    min-width: 0;
-    padding: 16px;
+    min-width: 50%;
+    width: 50%;
   }
 
-  #placar-tittle {
-    width: 100%;
+  .placar-tittle-container {
+  }
+
+  .placar-tittle {
+      font-size: clamp(0px, 3vw, 70px);
   }
 
   #pontuacoes {
-    width: 100%;
-    margin-bottom: 16px;
+    margin: 5px 0px; 
+  }
+  #pontuacao-atual{
+    font-size: clamp(0px, 2.5vw, 70px);
+  }
+  .pontuacao-item {
+    margin: 4px 0;
+    font-size: clamp(0px, 2vw, 70px);
+  }
+  #pontos {
+  }
+  .placar-tittle-container.gold-tittle {
   }
 
-  .pontuacao-item {
-    gap: 8px;
+  #historico-pontuacoes {
   }
 
   #lista-historico-pontuacao {
-    padding: 0;
   }
 
-  #item-historico-pontuacao {
-    font-size: 1rem;
-  }
-} */
-/**/
-
-/*CELULARES MAIORES*/
-/* @media (max-width: 768px) {
-  #tittle-container {
-    padding-top: 16px;
-    text-align: center;
-  }
-  #placar-component {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+  .item-historico-pontuacao {
   }
 
-  #item-historico-pontuacao {
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
+  .historico-nome-pontuador {
   }
-} */
-/**/
+  .historico-quantidade-pontos {
+  }
+}
+
+/*FIM TABLET*/
 
 /*MOBILE*/
 
