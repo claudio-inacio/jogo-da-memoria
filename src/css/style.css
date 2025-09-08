@@ -43,7 +43,7 @@ div {
   ); /*clamp recebe valor minimo, ideal, maximo para trabalhar com mobile */
   font-weight: 600;
 }
-#game-sub-tittle {
+.game-sub-tittle {
   font-weight: bolder;
   color: gray;
   font-size: clamp(14px, 4.8vw, 20px);
@@ -131,7 +131,7 @@ div {
 }
 /*FIM ESTILIZACAO PADRÃO*/
 
-@media (max-width: 480px) {
+@media (max-width: 598px) {
   #cabecalho {
   }
   #tittle-container {
@@ -139,6 +139,8 @@ div {
     gap: 5px;
   }
   #placar-container {
+    width: 40%;
+    min-width: 20%;
   }
   #placar-component {
   }
@@ -177,121 +179,137 @@ div {
 
 /*FIM MOBILE*/
 
-/*MOBILE PARA TABLET*/
+/*TABLET*/
 
-/* @media (max-width: 900px) {
+@media (min-width: 599px) and (max-width: 900px) {
   #cabecalho {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    padding: 16px;
   }
   #tittle-container {
-    width: 100%;
-    max-width: 700px;
-    min-width: 0;
-    margin-left: 0;
-    padding-top: 24px;
-    height: auto;
+    text-align: start;
+    flex-direction: column;
+    gap: 5px;
+    width: 70%;
   }
 
+  #game-tittle {
+    font-size: clamp(28px, 6vw, 100px);
+  }
+  #game-sub-tittle {
+    font-size: clamp(14px, 0.3vw, 20px);
+    padding-left: 50px;
+  }
   #placar-container {
-    width: 100%;
-    min-width: 0;
-    justify-content: center;
-    padding-right: 0;
-    gap: 16px;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
   }
 
   #placar-component {
-    width: min(640px, 100%);
-    min-width: 0;
-    padding: 16px;
+    min-width: 50%;
+    width: 50%;
   }
 
-  #placar-tittle {
-    width: 100%;
+  .placar-tittle-container {
+  }
+
+  .placar-tittle {
+      font-size: clamp(0px, 3vw, 70px);
   }
 
   #pontuacoes {
-    width: 100%;
-    margin-bottom: 16px;
+    margin: 5px 0px; 
+  }
+  #pontuacao-atual{
+    font-size: clamp(0px, 2.5vw, 70px);
+  }
+  .pontuacao-item {
+    margin: 4px 0;
+    font-size: clamp(0px, 2vw, 70px);
+  }
+  #pontos {
+  }
+  .placar-tittle-container.gold-tittle {
   }
 
-  .pontuacao-item {
-    gap: 8px;
+  #historico-pontuacoes {
   }
 
   #lista-historico-pontuacao {
-    padding: 0;
   }
 
-  #item-historico-pontuacao {
-    font-size: 1rem;
+  .item-historico-pontuacao {
   }
-} */
-/**/
 
-/*CELULARES MAIORES*/
-/* @media (max-width: 768px) {
+  .historico-nome-pontuador {
+  }
+  .historico-quantidade-pontos {
+  }
+}
+
+/*FIM TABLET*/
+
+/*DESKTOP*/
+@media (min-width: 901px) {
+  #cabecalho {
+    flex-direction: row;
+  }
   #tittle-container {
-    padding-top: 16px;
     text-align: center;
+    justify-content: center;
+    width: 100%;
+    display: fle;
+    gap: 5px;
+  }
+  #game-tittle {
+    font-size: clamp(28px, 8vw, 70px);
+  }
+  #placar-container {
+    width: 60%;
+    flex-direction: row;
+    justify-content: center;
+    
   }
   #placar-component {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+     width: 400px;
+     min-width: 400px;
   }
 
-  #item-historico-pontuacao {
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
+  .placar-tittle-container {
   }
-} */
-/**/
 
-/*MOBILE*/
+  #placar-tittle {
+  }
 
-/*
+  #pontuacoes {
+    margin: 5px 0px;
+  }
+  .pontuacao-item {
+    margin: 4px 0;
+  }
+  #pontos {
+  }
+  .placar-tittle-container.gold-tittle {
+  }
 
-#cabecalho {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  #historico-pontuacoes {
+  }
+
+  #lista-historico-pontuacao {
+  }
+
+  .item-historico-pontuacao {
+  }
+
+  .historico-nome-pontuador {
+  }
+  .historico-quantidade-pontos {
+  }
 }
 
-#tittle-container {
-  width: 30%;
-  padding-top: 40px;
-  margin-left: 100px;
-  max-width: 700px;
-  min-width: 350px;
-  display: flex;
-  text-align: center;
-  justify-content: start;
-  display: flex;
-  flex-direction: column;
-  height: 350px;
-  align-items: center;
-}*/
+/*FIM DESKTOP*/
 
-.triangulo-cima {
-  width: 0px;
-  height: 0px;
-  border-left: 62.5px solid transparent;
-  border-right: 62.5px solid transparent;
-  cursor: pointer;
-}
-*/ .triangulo-cima-aceso {
-  transition: all 0.6s;
-  border-bottom: 375px solid rgb(0, 177, 0);
-}
 
-.triangulo-cima-apagado {
-  border-bottom: 275px solid rgb(0, 85, 0);
-}
+
 
 .gradient-border {
   --borderWidth: 3px;
