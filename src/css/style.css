@@ -129,6 +129,27 @@ div {
 }
 .historico-quantidade-pontos {
 }
+
+#game-container {
+}
+.triangulo-cima {
+  width: 0px;
+  height: 0px;
+  border-left: 62.5px solid transparent;
+  border-right: 62.5px solid transparent;
+  cursor: pointer;
+}
+.triangulo-cima-aceso {
+  transition: all 0.6s;
+  border-bottom: 375px solid rgb(0, 177, 0);
+}
+
+.triangulo-cima-apagado {
+  border-bottom: 275px solid rgb(0, 85, 0);
+}
+#botao-topo {
+}
+
 /*FIM ESTILIZACAO PADRÃO*/
 
 @media (max-width: 598px) {
@@ -213,13 +234,13 @@ div {
   }
 
   .placar-tittle {
-      font-size: clamp(0px, 3vw, 70px);
+    font-size: clamp(0px, 3vw, 70px);
   }
 
   #pontuacoes {
-    margin: 5px 0px; 
+    margin: 5px 0px;
   }
-  #pontuacao-atual{
+  #pontuacao-atual {
     font-size: clamp(0px, 2.5vw, 70px);
   }
   .pontuacao-item {
@@ -267,11 +288,10 @@ div {
     width: 60%;
     flex-direction: row;
     justify-content: center;
-    
   }
   #placar-component {
-     width: 400px;
-     min-width: 400px;
+    width: 400px;
+    min-width: 400px;
   }
 
   .placar-tittle-container {
@@ -307,9 +327,6 @@ div {
 }
 
 /*FIM DESKTOP*/
-
-
-
 
 .gradient-border {
   --borderWidth: 3px;
