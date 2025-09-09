@@ -40,8 +40,8 @@ div {
   font-weight: bolder;
   color: gray;
   font-size: clamp(
-    28px,
-    10vw,
+    10px,
+    7vw,
     70px
   ); /*clamp recebe valor minimo, ideal, maximo para trabalhar com mobile */
   font-weight: 600;
@@ -49,7 +49,7 @@ div {
 .game-sub-tittle {
   font-weight: bolder;
   color: gray;
-  font-size: clamp(14px, 4.8vw, 20px);
+  font-size: clamp(2px, 2.0vw, 20px);
   font-weight: 600;
 }
 
@@ -81,7 +81,7 @@ div {
 }
 
 .placar-tittle {
-  font-size: clamp(2px, 6vw, 25px);
+  font-size: clamp(2px, 4vw, 25px);
 }
 
 #pontuacoes {
@@ -126,7 +126,7 @@ div {
   justify-content: space-between;
   font-weight: bolder;
   font-size: large;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 .historico-nome-pontuador {
 }
@@ -243,7 +243,7 @@ div {
   transform: rotate(-45deg);
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
-  font-size: 25px;
+  size: clamp(2px, 3vw, 25px);
 }
 .display {
   display: none;
@@ -254,18 +254,21 @@ div {
 @media (max-width: 598px) {
   /*CABEÇALHO E PLACAR*/
   #cabecalho {
-      margin: 4px;
-  padding: 4px;
+    margin: 1px;
+    padding: 1px;
+    
   }
   #tittle-container {
     text-align: center;
-    gap: 5px;
+    gap: 3px;
+    padding: 5px;
   }
   #placar-container {
     width: 100%;
     min-width: 20%;
   }
   #placar-component {
+    padding: 5px 0px;
   }
 
   .placar-tittle-container {
@@ -275,10 +278,10 @@ div {
   }
 
   #pontuacoes {
-    margin: 5px 0px;
+    margin: 2px 0px;
   }
   .pontuacao-item {
-    margin: 4px 0;
+    margin: 2px 0;
   }
   #pontos {
   }
@@ -300,6 +303,81 @@ div {
   }
 
   /* GAME */
+  #game-container {
+    margin-top: 30px;
+    height: 300px;
+    min-width: 100%;
+  }
+  .triangulo {
+  }
+  .triangulo-cima {
+    border-left: 30.5px solid transparent;
+    border-right: 30.5px solid transparent;
+  }
+  .triangulo-cima-aceso {
+    border-bottom: 150px solid rgb(0, 177, 0);
+  }
+
+  .triangulo-cima-apagado {
+    border-bottom: 150px solid rgb(0, 85, 0);
+  }
+  #botao-topo {
+  }
+
+  .triangulo-baixo {
+    border-left: 30.5px solid transparent;
+    border-right: 30.5px solid transparent;
+  }
+  .triangulo-baixo-aceso {
+    border-top: 150px solid rgb(49, 49, 255);
+  }
+
+  .triangulo-baixo-apagado {
+    border-top: 150px solid rgb(14, 14, 136);
+  }
+  #botao-baixo {
+  }
+
+  .triangulo-esquerda {
+    border-top: 40.5px solid transparent;
+    border-bottom: 30.5px solid transparent;
+    border-left: none;
+  }
+
+  .triangulo-esquerda-aceso {
+    border-right: 185px solid rgb(155, 55, 255);
+  }
+
+  .triangulo-esquerda-apagado {
+    border-right: 185px solid rgb(82, 0, 163);
+  }
+
+  #botao-esquerda {
+  }
+
+  .triangulo-direita {
+  }
+  .triangulo-direita-aceso {
+    border-left: 185px solid rgb(126, 34, 0);
+  }
+
+  .triangulo-direita-apagado {
+    border-left: 185px solid rgb(126, 34, 0);
+  }
+  #botao-direita {
+    border-top: 40.5px solid transparent;
+    border-bottom: 30.5px solid transparent;
+  }
+
+  #menu-quadrado {
+  }
+  #menu-redondo {
+    width: 93.5px;
+    height: 93.5px;
+  }
+
+  .botao-menu {
+  }
 }
 
 /*FIM MOBILE*/
@@ -325,33 +403,36 @@ div {
   }
   #placar-container {
     display: flex;
+   
     flex-direction: row;
     justify-content: flex-end;
   }
 
   #placar-component {
-    min-width: 50%;
-    width: 50%;
+    min-width: 45%;
+    height: 180px;
+    width: 45%;
   }
 
   .placar-tittle-container {
   }
 
   .placar-tittle {
-    font-size: clamp(0px, 3vw, 70px);
+    font-size: clamp(0px, 2vw, 70px);
   }
 
   #pontuacoes {
-    margin: 5px 0px;
+    margin: 2px 0px;
   }
   #pontuacao-atual {
-    font-size: clamp(0px, 2.5vw, 70px);
+    font-size: clamp(13px, 1.3vw, 70px);
   }
   .pontuacao-item {
     margin: 4px 0;
-    font-size: clamp(0px, 2vw, 70px);
+    font-size: clamp(13px, 1.5vw, 70px);
   }
   #pontos {
+    font-size: clamp(13px, 1.5vw, 70px);
   }
   .placar-tittle-container.gold-tittle {
   }
@@ -369,7 +450,85 @@ div {
   }
   .historico-quantidade-pontos {
   }
+
+  /* GAME */
+  #game-container {
+    margin-top: -32px;
+    height: 300px;
+    min-width: 100%;
+  }
+  .triangulo {
+  }
+  .triangulo-cima {
+    border-left: 38.5px solid transparent;
+    border-right: 38.5px solid transparent;
+  }
+  .triangulo-cima-aceso {
+    border-bottom: 180px solid rgb(0, 177, 0);
+  }
+
+  .triangulo-cima-apagado {
+    border-bottom: 180px solid rgb(0, 85, 0);
+  }
+  #botao-topo {
+  }
+
+  .triangulo-baixo {
+    border-left: 38.5px solid transparent;
+    border-right: 38.5px solid transparent;
+  }
+  .triangulo-baixo-aceso {
+    border-top: 180px solid rgb(49, 49, 255);
+  }
+
+  .triangulo-baixo-apagado {
+    border-top: 180px solid rgb(14, 14, 136);
+  }
+  #botao-baixo {
+  }
+
+  .triangulo-esquerda {
+    border-top: 45.5px solid transparent;
+    border-bottom: 35.5px solid transparent;
+    border-left: none;
+  }
+
+  .triangulo-esquerda-aceso {
+    border-right: 235px solid rgb(155, 55, 255);
+  }
+
+  .triangulo-esquerda-apagado {
+    border-right: 235px solid rgb(82, 0, 163);
+  }
+
+  #botao-esquerda {
+  }
+
+  .triangulo-direita {
+  }
+  .triangulo-direita-aceso {
+    border-left: 235px solid rgb(126, 34, 0);
+  }
+
+  .triangulo-direita-apagado {
+    border-left: 235px solid rgb(126, 34, 0);
+  }
+  #botao-direita {
+    border-top: 45.5px solid transparent;
+    border-bottom: 35.5px solid transparent;
+  }
+
+  #menu-quadrado {
+  }
+  #menu-redondo {
+    width: 105.5px;
+    height: 105.5px;
+  }
+
+  .botao-menu {
+  }
 }
+
 
 /*FIM TABLET*/
 
@@ -427,6 +586,76 @@ div {
   .historico-nome-pontuador {
   }
   .historico-quantidade-pontos {
+  }
+
+  /*GAME*/
+
+  #game-container {
+    
+  }
+  .triangulo {
+  }
+  .triangulo-cima {
+    
+  }
+  .triangulo-cima-aceso {
+    
+  }
+
+  .triangulo-cima-apagado {
+    
+  }
+  #botao-topo {
+  }
+
+  .triangulo-baixo {
+    
+  }
+  .triangulo-baixo-aceso {
+    
+  }
+
+  .triangulo-baixo-apagado {
+    
+  }
+  #botao-baixo {
+  }
+
+  .triangulo-esquerda {
+    
+  }
+
+  .triangulo-esquerda-aceso {
+    
+  }
+
+  .triangulo-esquerda-apagado {
+    
+  }
+
+  #botao-esquerda {
+  }
+
+  .triangulo-direita {
+  }
+  .triangulo-direita-aceso {
+    
+  }
+
+  .triangulo-direita-apagado {
+    
+  }
+  #botao-direita {
+
+  }
+
+  #menu-quadrado {
+  }
+  #menu-redondo {
+  
+  }
+
+  .botao-menu {
   }
 }
 
