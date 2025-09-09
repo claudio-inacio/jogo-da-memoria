@@ -133,7 +133,7 @@ div {
 .historico-quantidade-pontos {
 }
 
-/*BOTOES PRINCIPAIS DO GAME*/
+/* GAME */
 #game-container {
   position: relative;
   height: auto;
@@ -144,7 +144,6 @@ div {
   flex-direction: column;
   text-align: start;
   align-items: center;
-  
 }
 .triangulo {
   width: 0px;
@@ -182,7 +181,6 @@ div {
   border-top: 300px solid rgb(14, 14, 136);
 }
 #botao-baixo {
-
 }
 
 .triangulo-esquerda {
@@ -201,7 +199,6 @@ div {
 }
 
 #botao-esquerda {
-
 }
 
 .triangulo-direita {
@@ -248,7 +245,6 @@ div {
   font-weight: bold;
   font-size: 25px;
 }
-
 .display {
   display: none;
 }
@@ -256,6 +252,7 @@ div {
 /*FIM ESTILIZACAO PADRÃO*/
 
 @media (max-width: 598px) {
+  /*CABEÇALHO E PLACAR*/
   #cabecalho {
   }
   #tittle-container {
@@ -299,6 +296,8 @@ div {
   }
   .historico-quantidade-pontos {
   }
+
+  /* GAME */
 }
 
 /*FIM MOBILE*/
