@@ -44,11 +44,11 @@
                 <span class="historico-nome-pontuador">1° Fernanda Silva</span>
                 <span class="historico-quantidade-pontos">26 pontos</span>
               </li>
-               <li class="item-historico-pontuacao">
+              <li class="item-historico-pontuacao">
                 <span class="historico-nome-pontuador">2° mike</span>
                 <span class="historico-quantidade-pontos">13 pontos</span>
               </li>
-               <li class="item-historico-pontuacao">
+              <li class="item-historico-pontuacao">
                 <span class="historico-nome-pontuador">2° matheus</span>
                 <span class="historico-quantidade-pontos">7 pontos</span>
               </li>
@@ -56,30 +56,38 @@
           </div>
         </div>
       </div>
-  
     </header>
-    <main id="game-container">
-      
-      <button
-        class="triangulo-cima triangulo-cima-apagado"
-        id="botao-topo"
-        aria-label="Botão de cima"
-      >
-     <div id="menu-botoes-laterais"> 
-      <button class="triangulo-esquerda triangulo-esquerda-apagado" id="botao-esquerda">
-        <div id="menu-square" class="gradient-border">
-          <div id="menu-circle" class="border-efect"> 
-            <button id="start-game-button">START!</button>
-            <button id="reset-game-button">RESTART!</button>            
+
+    <main>
+      <div id="game-container">
+        <div id="botao-topo-container">
+          <button
+            class="triangulo triangulo-cima triangulo-cima-apagado"
+            id="botao-topo"
+          ></button>
+        </div>
+        <div id="menu-botoes-laterais">
+          <button
+            class="triangulo triangulo-esquerda triangulo-esquerda-apagado"
+            id="botao-esquerda"
+          ></button>
+          <div class="gradient-border" id="menu-quadrado">
+            <div class="gradient-border" id="menu-redondo">
+              <!-- <button class="botao-menu" id="botao-comecar-jogo">COMEÇAR</button> -->
+              <button class="botao-menu" id="reset-game-button">RECOMEÇAR</button>            
+            </div>
           </div>
-      <button class="triangulo-diretia triangulo-direta-apagado" id="botao-diretia">
-      
+          <button
+            class="triangulo triangulo-direita triangulo-direita-apagado"
+            id="botao-direita"
+          ></button>
+        </div>
 
+        <button
+          class="triangulo triangulo-baixo triangulo-baixo-apagado"
+          id="botao-baixo"
+        ></button>
       </div>
-      <button class="triangulo-baixo triangulo-baixo-apagado" id="botao-baixo">
-      <button >
-
-      
     </main>
   </body>
 </html>
