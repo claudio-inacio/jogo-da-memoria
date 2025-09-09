@@ -49,7 +49,7 @@ div {
 .game-sub-tittle {
   font-weight: bolder;
   color: gray;
-  font-size: clamp(2px, 2.0vw, 20px);
+  font-size: clamp(2px, 2vw, 20px);
   font-weight: 600;
 }
 
@@ -245,6 +245,66 @@ div {
   font-weight: bold;
   size: clamp(2px, 3vw, 25px);
 }
+
+/*FOOTER*/
+#footer {
+  flex-direction: row-reverse;
+  list-style: none;
+}
+#regras-container {
+  height: 35%;
+  width: 25%;
+  /* background-color: rgba(0, 0, 0, 0.651); */
+  position: absolute;
+  list-style: none;
+  left: 5%;
+  bottom: 5%;
+  text-align: left;
+  flex-direction: column;
+  color: white;
+  border-radius: 4px;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-content: start;
+  text-decoration: none;
+  /* overflow: scroll; */
+}
+
+#titulo-regra-cotainer {
+  padding-top: 10px;
+  list-style: none;
+  font-size: clamp(15px, 1vw, 30px);
+}
+
+#regra-lista {
+  text-decoration: none;
+  list-style: none;
+}
+.regra-item {
+  list-style: none;
+}
+
+#dev-container {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 20%;
+  float: right;
+  min-width: 350px;
+  position: absolute;
+  right: 0.5%;
+  bottom: 10%;
+}
+#titulo-desenvolvedor {
+  font-size: clamp(30px, 2vw, 70px);
+}
+#nome-desenvolvedor {
+  margin-left: 30px;
+  font-size: clamp(50px, 2vw, 70px);
+}
 .display {
   display: none;
 }
@@ -254,9 +314,7 @@ div {
 @media (max-width: 598px) {
   /*CABEÇALHO E PLACAR*/
   #cabecalho {
-    margin: 1px;
-    padding: 1px;
-    
+  
   }
   #tittle-container {
     text-align: center;
@@ -304,15 +362,16 @@ div {
 
   /* GAME */
   #game-container {
-    margin-top: 30px;
+    margin-top: 60px;
+    margin-bottom: 20px;
     height: 300px;
     min-width: 100%;
   }
   .triangulo {
   }
   .triangulo-cima {
-    border-left: 30.5px solid transparent;
-    border-right: 30.5px solid transparent;
+    border-left: 40.5px solid transparent;
+    border-right: 35.5px solid transparent;
   }
   .triangulo-cima-aceso {
     border-bottom: 150px solid rgb(0, 177, 0);
@@ -325,8 +384,8 @@ div {
   }
 
   .triangulo-baixo {
-    border-left: 30.5px solid transparent;
-    border-right: 30.5px solid transparent;
+    border-left: 40.5px solid transparent;
+    border-right: 35.5px solid transparent;
   }
   .triangulo-baixo-aceso {
     border-top: 150px solid rgb(49, 49, 255);
@@ -339,8 +398,8 @@ div {
   }
 
   .triangulo-esquerda {
-    border-top: 40.5px solid transparent;
-    border-bottom: 30.5px solid transparent;
+    border-top: 60.5px solid transparent;
+    border-bottom: 45.5px solid transparent;
     border-left: none;
   }
 
@@ -365,18 +424,69 @@ div {
     border-left: 185px solid rgb(126, 34, 0);
   }
   #botao-direita {
-    border-top: 40.5px solid transparent;
-    border-bottom: 30.5px solid transparent;
+    border-top: 60.5px solid transparent;
+    border-bottom: 45.5px solid transparent;
   }
 
   #menu-quadrado {
   }
   #menu-redondo {
-    width: 93.5px;
-    height: 93.5px;
+    width: 135.5px;
+    height: 135.5px;
   }
 
   .botao-menu {
+  }
+  #footer {
+    display: flex;
+    width: 90%;
+    max-width: 300px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    flex-direction: column-reverse;
+    margin-top: 40px;
+  }
+  #dev-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+    max-width: 20px;
+    margin-top: 25px;
+    position: initial;
+    
+  }
+  #titulo-desenvolvedor{
+     font-size: clamp(12px, 1vw, 15px);
+  }
+  #nome-desenvolvedor{
+     font-size: clamp(20px, 0.8vw, 70px);
+  }
+  .regra-text {
+    font-size: clamp(13px, 0.8vw, 10px);
+  }
+
+  #titulo-regra-cotainer {
+    padding-top: 5px;
+    font-size: clamp(15px, 1vw, 10px);
+  }
+  #regras-container {
+    flex-direction: column;
+    max-width: 400px;
+    border-radius: 4px;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 25%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+
+    scrollbar-width: none;
+  }
+  .regra-text {
+    font-size: clamp(15px, 1vw, 10px);
   }
 }
 
@@ -386,6 +496,7 @@ div {
 
 @media (min-width: 599px) and (max-width: 900px) {
   #cabecalho {
+    flex-direction: row;
   }
   #tittle-container {
     text-align: start;
@@ -403,15 +514,15 @@ div {
   }
   #placar-container {
     display: flex;
-   
+
     flex-direction: row;
     justify-content: flex-end;
   }
 
   #placar-component {
-    min-width: 45%;
-    height: 180px;
-    width: 45%;
+    min-width: 250px;
+    height: 250px;
+    width: 65%;
   }
 
   .placar-tittle-container {
@@ -453,52 +564,52 @@ div {
 
   /* GAME */
   #game-container {
-    margin-top: -32px;
+    margin-top: 32px;
     height: 300px;
     min-width: 100%;
   }
   .triangulo {
   }
   .triangulo-cima {
-    border-left: 38.5px solid transparent;
-    border-right: 38.5px solid transparent;
+    border-left: 58.5px solid transparent;
+    border-right: 58.5px solid transparent;
   }
   .triangulo-cima-aceso {
-    border-bottom: 180px solid rgb(0, 177, 0);
+    border-bottom: 280px solid rgb(0, 177, 0);
   }
 
   .triangulo-cima-apagado {
-    border-bottom: 180px solid rgb(0, 85, 0);
+    border-bottom: 280px solid rgb(0, 85, 0);
   }
   #botao-topo {
   }
 
   .triangulo-baixo {
-    border-left: 38.5px solid transparent;
-    border-right: 38.5px solid transparent;
+    border-left: 58.5px solid transparent;
+    border-right: 58.5px solid transparent;
   }
   .triangulo-baixo-aceso {
-    border-top: 180px solid rgb(49, 49, 255);
+    border-top: 280px solid rgb(49, 49, 255);
   }
 
   .triangulo-baixo-apagado {
-    border-top: 180px solid rgb(14, 14, 136);
+    border-top: 280px solid rgb(14, 14, 136);
   }
   #botao-baixo {
   }
 
   .triangulo-esquerda {
-    border-top: 45.5px solid transparent;
-    border-bottom: 35.5px solid transparent;
+    border-top: 65.5px solid transparent;
+    border-bottom: 55.5px solid transparent;
     border-left: none;
   }
 
   .triangulo-esquerda-aceso {
-    border-right: 235px solid rgb(155, 55, 255);
+    border-right: 375px solid rgb(155, 55, 255);
   }
 
   .triangulo-esquerda-apagado {
-    border-right: 235px solid rgb(82, 0, 163);
+    border-right: 375px solid rgb(82, 0, 163);
   }
 
   #botao-esquerda {
@@ -507,28 +618,54 @@ div {
   .triangulo-direita {
   }
   .triangulo-direita-aceso {
-    border-left: 235px solid rgb(126, 34, 0);
+    border-left: 375px solid rgb(126, 34, 0);
   }
 
   .triangulo-direita-apagado {
-    border-left: 235px solid rgb(126, 34, 0);
+    border-left: 375px solid rgb(126, 34, 0);
   }
   #botao-direita {
-    border-top: 45.5px solid transparent;
-    border-bottom: 35.5px solid transparent;
+    border-top: 65.5px solid transparent;
+    border-bottom: 55.5px solid transparent;
   }
 
   #menu-quadrado {
   }
   #menu-redondo {
-    width: 105.5px;
-    height: 105.5px;
+    width: 165.5px;
+    height: 165.5px;
   }
 
   .botao-menu {
   }
-}
 
+  #dev-container {
+    width: 15%;
+    height: 10%;
+    bottom: 2%;
+  }
+  .regra-text {
+    font-size: clamp(13px, 0.8vw, 10px);
+  }
+
+  #titulo-regra-cotainer {
+    padding-top: 5px;
+    font-size: clamp(15px, 1vw, 10px);
+  }
+  #regras-container {
+    height: 35%;
+    min-width: 150px;
+    max-width: 300px;
+    overflow: auto;
+    width: 30%;
+
+    scrollbar-width: none;
+    /* font-size: clamp(20px, 0.2vw, 10px);} */
+  }
+  .regra-text {
+    font-size: clamp(15px, 1vw, 10px);
+  }
+}
 
 /*FIM TABLET*/
 
@@ -536,6 +673,7 @@ div {
 @media (min-width: 901px) {
   #cabecalho {
     flex-direction: row;
+    /* margin-top: -32px;? */
   }
   #tittle-container {
     text-align: center;
@@ -549,6 +687,7 @@ div {
   }
   #placar-container {
     width: 60%;
+    /* margin-top: 40px; */
     flex-direction: row;
     justify-content: center;
   }
@@ -561,6 +700,7 @@ div {
   }
 
   #placar-tittle {
+    /* font-size: clamp(15px, 1.2vw, 70px); */
   }
 
   #pontuacoes {
@@ -581,6 +721,7 @@ div {
   }
 
   .item-historico-pontuacao {
+    font-size: clamp(15px, 1.4vw, 24px);
   }
 
   .historico-nome-pontuador {
@@ -591,46 +732,50 @@ div {
   /*GAME*/
 
   #game-container {
-    
+    margin-top: -60px;
   }
   .triangulo {
   }
   .triangulo-cima {
-    
+    border-left: 60.5px solid transparent;
+    border-right: 60.5px solid transparent;
   }
   .triangulo-cima-aceso {
-    
+    border-bottom: 24px solid rgb(0, 177, 0);
   }
 
   .triangulo-cima-apagado {
-    
+    border-bottom: 300px solid rgb(0, 85, 0);
   }
   #botao-topo {
   }
 
   .triangulo-baixo {
-    
+    border-left: 60.5px solid transparent;
+    border-right: 60.5px solid transparent;
   }
   .triangulo-baixo-aceso {
-    
+    border-top: 244px solid rgb(49, 49, 255);
   }
 
   .triangulo-baixo-apagado {
-    
+    border-top: 300px solid rgb(14, 14, 136);
   }
   #botao-baixo {
   }
 
   .triangulo-esquerda {
-    
+    border-top: 60.5px solid transparent;
+    border-bottom: 60.5px solid transparent;
+    border-left: none;
   }
 
   .triangulo-esquerda-aceso {
-    
+    border-right: 355px solid rgb(155, 55, 255);
   }
 
   .triangulo-esquerda-apagado {
-    
+    border-right: 355px solid rgb(82, 0, 163);
   }
 
   #botao-esquerda {
@@ -639,23 +784,46 @@ div {
   .triangulo-direita {
   }
   .triangulo-direita-aceso {
-    
+    border-left: 355px solid rgb(126, 34, 0);
   }
 
   .triangulo-direita-apagado {
-    
+    border-left: 355px solid rgb(126, 34, 0);
   }
   #botao-direita {
-
+    border-top: 60.5px solid transparent;
+    border-bottom: 60.5px solid transparent;
   }
 
   #menu-quadrado {
   }
   #menu-redondo {
-  
   }
 
   .botao-menu {
+    font-size: clamp(28px, 2vw, 27px);
+  }
+
+  #titulo-regra-cotainer {
+    padding-top: 5px;
+    font-size: clamp(15px, 1vw, 10px);
+  }
+  #regras-container {
+    height: 30%;
+
+    min-width: 300px;
+    max-width: 500px;
+    overflow: auto;
+    width: 30%;
+
+    scrollbar-width: none;
+    /* font-size: clamp(20px, 0.2vw, 10px);} */
+  }
+  .regra-text {
+    font-size: clamp(15px, 1vw, 10px);
+  }
+  #regras-lista {
+    padding: 10px;
   }
 }
 
