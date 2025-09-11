@@ -164,11 +164,13 @@ div {
 .triangulo-cima-apagado {
   border-bottom: 300px solid rgb(0, 85, 0);
 }
-#botao-topo {
+#botao-cima {
 }
 
 .triangulo-baixo {
   border-left: 62.5px solid transparent;
+
+  
   border-right: 62.5px solid transparent;
   border-bottom: none;
 }
@@ -207,7 +209,7 @@ div {
   border-right: none;
 }
 .triangulo-direita-aceso {
-  border-left: 300px solid orangered;
+  border-left: 400px solid rgb(230, 68, 10);
   transition: all 0.6s;
 }
 
@@ -314,7 +316,6 @@ div {
 @media (max-width: 598px) {
   /*CABEÇALHO E PLACAR*/
   #cabecalho {
-  
   }
   #tittle-container {
     text-align: center;
@@ -380,7 +381,7 @@ div {
   .triangulo-cima-apagado {
     border-bottom: 150px solid rgb(0, 85, 0);
   }
-  #botao-topo {
+  #botao-cima {
   }
 
   .triangulo-baixo {
@@ -415,17 +416,17 @@ div {
   }
 
   .triangulo-direita {
+    border-top: 60.5px solid transparent;
+    border-bottom: 45.5px solid transparent;
   }
   .triangulo-direita-aceso {
-    border-left: 185px solid rgb(126, 34, 0);
+    border-left: 185px solid rgb(230, 68, 10);
   }
 
   .triangulo-direita-apagado {
     border-left: 185px solid rgb(126, 34, 0);
   }
   #botao-direita {
-    border-top: 60.5px solid transparent;
-    border-bottom: 45.5px solid transparent;
   }
 
   #menu-quadrado {
@@ -455,13 +456,12 @@ div {
     max-width: 20px;
     margin-top: 25px;
     position: initial;
-    
   }
-  #titulo-desenvolvedor{
-     font-size: clamp(12px, 1vw, 15px);
+  #titulo-desenvolvedor {
+    font-size: clamp(12px, 1vw, 15px);
   }
-  #nome-desenvolvedor{
-     font-size: clamp(20px, 0.8vw, 70px);
+  #nome-desenvolvedor {
+    font-size: clamp(20px, 0.8vw, 70px);
   }
   .regra-text {
     font-size: clamp(13px, 0.8vw, 10px);
@@ -581,7 +581,7 @@ div {
   .triangulo-cima-apagado {
     border-bottom: 280px solid rgb(0, 85, 0);
   }
-  #botao-topo {
+  #botao-cima {
   }
 
   .triangulo-baixo {
@@ -616,17 +616,18 @@ div {
   }
 
   .triangulo-direita {
+    border-top: 65.5px solid transparent;
+    border-bottom: 55.5px solid transparent;
+    border-right: none;
   }
   .triangulo-direita-aceso {
-    border-left: 375px solid rgb(126, 34, 0);
+    border-left: 375px solid rgb(230, 68, 10);
   }
 
   .triangulo-direita-apagado {
     border-left: 375px solid rgb(126, 34, 0);
   }
   #botao-direita {
-    border-top: 65.5px solid transparent;
-    border-bottom: 55.5px solid transparent;
   }
 
   #menu-quadrado {
@@ -734,6 +735,7 @@ div {
   #game-container {
     margin-top: -60px;
   }
+
   .triangulo {
   }
   .triangulo-cima {
@@ -741,13 +743,13 @@ div {
     border-right: 60.5px solid transparent;
   }
   .triangulo-cima-aceso {
-    border-bottom: 24px solid rgb(0, 177, 0);
+    border-bottom: 300px solid rgb(0, 177, 0);
   }
 
   .triangulo-cima-apagado {
     border-bottom: 300px solid rgb(0, 85, 0);
   }
-  #botao-topo {
+  #botao-cima {
   }
 
   .triangulo-baixo {
@@ -755,7 +757,7 @@ div {
     border-right: 60.5px solid transparent;
   }
   .triangulo-baixo-aceso {
-    border-top: 244px solid rgb(49, 49, 255);
+    border-top: 300px solid rgb(49, 49, 255);
   }
 
   .triangulo-baixo-apagado {
@@ -767,7 +769,6 @@ div {
   .triangulo-esquerda {
     border-top: 60.5px solid transparent;
     border-bottom: 60.5px solid transparent;
-    border-left: none;
   }
 
   .triangulo-esquerda-aceso {
@@ -782,17 +783,17 @@ div {
   }
 
   .triangulo-direita {
+    border-top: 60.5px solid transparent;
+    border-bottom: 60.5px solid transparent;
   }
   .triangulo-direita-aceso {
-    border-left: 355px solid rgb(126, 34, 0);
+    border-left: 355px solid rgb(230, 68, 10);
   }
 
   .triangulo-direita-apagado {
     border-left: 355px solid rgb(126, 34, 0);
   }
   #botao-direita {
-    border-top: 60.5px solid transparent;
-    border-bottom: 60.5px solid transparent;
   }
 
   #menu-quadrado {
