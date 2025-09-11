@@ -11,15 +11,15 @@ import {
 import { numeroAleatorio, piscarLuz } from './utils.js';
 
 let jogoIniciado = true;
-let sequenciaMaquina: number[] = [1, 1, 1, 1];
+let sequenciaMaquina: number[] = [];
 const maximoDeNumerosAleatorio = 4;
 const tempoLuzAcesa = {
   CLIQUE_JOGADOR: 500,
-  FACIL: 3000,
-  MEDIO: 400,
+  FACIL: 1000,
+  MEDIO: 500,
   DIFICIL: 300,
 };
-let dificuldadeSelecionada = tempoLuzAcesa.FACIL;
+let dificuldadeSelecionada = tempoLuzAcesa.DIFICIL;
 
 document.addEventListener('DOMContentLoaded', () => {
   const botaoTopo = document.getElementById('botao-cima') as HTMLButtonElement;
@@ -62,23 +62,44 @@ document.addEventListener('DOMContentLoaded', () => {
     )
   );
 });
-// let sequenciaMaquina: number[] = [1, 1, 1, 1];
- function jogadaMaquina(): void{
-    
-  // sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
-  for (let counter = 0; counter < sequenciaMaquina.length; counter++ ) {
-    // setTimeout( () => {
-      if (sequenciaMaquina[counter] === 1) {
-        setTimeout( () => {
-          piscarLuz(
-            ascenderLuzTrianguloCima,
-            apagarLuzTrianguloCima,
-            tempoLuzAcesa.FACIL
-          );
-        }, 600 * counter + 200);
-      }
-    // }, 1000);
+
+async function jogadaMaquina(): Promise<void> {
+  for (const numero of sequenciaMaquina) {
+    switch (numero) {
+      
+      case 1:
+        await piscarLuz(
+          ascenderLuzTrianguloCima,
+          apagarLuzTrianguloCima,
+          dificuldadeSelecionada
+        );
+        break;
+      case 2:
+        await piscarLuz(
+          ascenderLuzTrianguloBaixo,
+          apagarLuzTrianguloBaixo,
+          dificuldadeSelecionada
+        );
+        break;
+      case 3:
+        await piscarLuz(
+          ascenderLuzTrianguloEsquerda,
+          apagarLuzTrianguloEsquerda,
+          dificuldadeSelecionada
+        );
+        break;
+      case 4:
+        await piscarLuz(
+          ascenderLuzTrianguloDireita,
+          apagarLuzTrianguloDireita,
+          dificuldadeSelecionada
+        );
+        break;
+    }
+
+    // intervalo extra entre piscadas (opcional)
+    await new Promise((resolve) => setTimeout(resolve, 200));
   }
 }
 
-jogadaMaquina();
+// jogadaMaquina();

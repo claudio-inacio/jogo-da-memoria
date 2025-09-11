@@ -1,15 +1,24 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import { ascenderLuzTrianguloCima, apagarLuzTrianguloCima, ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, } from './luzes.js';
 import { numeroAleatorio, piscarLuz } from './utils.js';
 let jogoIniciado = true;
-let sequenciaMaquina = [1, 1, 1, 1];
+let sequenciaMaquina = [];
 const maximoDeNumerosAleatorio = 4;
 const tempoLuzAcesa = {
     CLIQUE_JOGADOR: 500,
-    FACIL: 3000,
-    MEDIO: 400,
+    FACIL: 1000,
+    MEDIO: 500,
     DIFICIL: 300,
 };
-let dificuldadeSelecionada = tempoLuzAcesa.FACIL;
+let dificuldadeSelecionada = tempoLuzAcesa.DIFICIL;
 document.addEventListener('DOMContentLoaded', () => {
     const botaoTopo = document.getElementById('botao-cima');
     const botaoBaixo = document.getElementById('botao-baixo');
@@ -20,18 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
     botaoEsquerda === null || botaoEsquerda === void 0 ? void 0 : botaoEsquerda.addEventListener('click', () => piscarLuz(ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, tempoLuzAcesa.CLIQUE_JOGADOR));
     botaoDireita === null || botaoDireita === void 0 ? void 0 : botaoDireita.addEventListener('click', () => piscarLuz(ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, tempoLuzAcesa.CLIQUE_JOGADOR));
 });
-// let sequenciaMaquina: number[] = [1, 1, 1, 1];
 function jogadaMaquina() {
-    // sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
-    for (let counter = 0; counter < sequenciaMaquina.length; counter++) {
-        // setTimeout( () => {
-        if (sequenciaMaquina[counter] === 1) {
-            setTimeout(() => {
-                piscarLuz(ascenderLuzTrianguloCima, apagarLuzTrianguloCima, tempoLuzAcesa.FACIL);
-            }, 600 * counter + 200);
+    return __awaiter(this, void 0, void 0, function* () {
+        for (const numero of sequenciaMaquina) {
+            switch (numero) {
+                case 1:
+                    yield piscarLuz(ascenderLuzTrianguloCima, apagarLuzTrianguloCima, dificuldadeSelecionada);
+                    break;
+                case 2:
+                    yield piscarLuz(ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, dificuldadeSelecionada);
+                    break;
+                case 3:
+                    yield piscarLuz(ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, dificuldadeSelecionada);
+                    break;
+                case 4:
+                    yield piscarLuz(ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, dificuldadeSelecionada);
+                    break;
+            }
+            // intervalo extra entre piscadas (opcional)
+            yield new Promise((resolve) => setTimeout(resolve, 200));
         }
-        // }, 1000);
-    }
+    });
 }
-jogadaMaquina();
+// jogadaMaquina();
 //# sourceMappingURL=script.js.map

@@ -7,12 +7,11 @@ export const piscarLuz = (
   apagar: () => void,
   tempoAceso: number
 ) => {
-  console.log('piscar');
-  const button = document.querySelector('.triangulo-cima') as HTMLElement;
-//   button.classList.remove('triangulo-cima-aceso');
-//   void button.offsetWidth;
-  ascender();
-  setTimeout(() => {
-    apagar();
-  }, tempoAceso);
+  return new Promise<void>((resolve) => {
+    ascender();
+    setTimeout(() => {
+      apagar();
+      resolve();
+    }, tempoAceso);
+  });
 };
