@@ -10,4 +10,6 @@ export const piscarLuz = (ascender, apagar, tempoAceso) => {
         }, tempoAceso);
     });
 };
+
+
 //# sourceMappingURL=utils.js.map

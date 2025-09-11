@@ -73,10 +73,10 @@
           ></button>
           <div class="gradient-border" id="menu-quadrado">
             <div class="gradient-border" id="menu-redondo">
-              <!-- <button class="botao-menu" id="botao-comecar-jogo">COMEÇAR</button> -->
-              <button class="botao-menu" id="reset-game-button">
+              <button class="botao-menu" id="botao-comecar-jogo">COMEÇAR</button>
+              <!-- <button class="botao-menu" id="reset-game-button">
                 RECOMEÇAR
-              </button>
+              </button> -->
             </div>
           </div>
           <button
@@ -139,7 +139,28 @@
         </ul>
       </div>
     </footer>
+    
+    <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 class="rainbow-text">Bora exercitar a memoria</h2>
+      <form id="form-inicio-jogo">
+        <label for="nome">Nome do jogador:</label>
+        <input type="text" id="nome" name="nome" required />
 
+        <label for="dificuldade">Dificuldade:</label>
+        <select id="dificuldade" name="dificuldade">
+          <option value="FACIL">Easy</option>
+          <option value="MEDIO">Medium</option>
+          <option value="DIFICIL">Hard</option>
+        </select>
+
+        <div class="botoes">
+          <button type="button" id="fechar-modal">Cancelar</button>
+          <button type="submit" id="iniciar-partida">Iniciar Partida</button>
+        </div>
+      </form>
+    </div>
+  </div>
     
     <script type="module" src="./src/script.js"></script>
   </body>
