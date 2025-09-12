@@ -1,3 +1,7 @@
+const botaoTopo = document.getElementById('botao-cima');
+const botaoBaixo = document.getElementById('botao-baixo');
+const botaoEsquerda = document.getElementById('botao-esquerda');
+const botaoDireita = document.getElementById('botao-direita');
 export function numeroAleatorio(max) {
     return Math.floor(Math.random() * max + 1);
 }
@@ -10,6 +14,10 @@ export const piscarLuz = (ascender, apagar, tempoAceso) => {
         }, tempoAceso);
     });
 };
-
-
+export function habilitarBotoes(disabled) {
+    botaoTopo.disabled = !disabled;
+    botaoBaixo.disabled = !disabled;
+    botaoEsquerda.disabled = !disabled;
+    botaoDireita.disabled = !disabled;
+}
 //# sourceMappingURL=utils.js.map
