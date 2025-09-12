@@ -63,6 +63,7 @@
         <div id="botao-topo-container">
           <button
             class="triangulo triangulo-cima triangulo-cima-apagado"
+            disabled
             id="botao-cima"
           ></button>
         </div>
@@ -70,24 +71,37 @@
           <button
             class="triangulo triangulo-esquerda triangulo-esquerda-apagado"
             id="botao-esquerda"
+            disabled
           ></button>
           <div class="gradient-border" id="menu-quadrado">
             <div class="gradient-border" id="menu-redondo">
-              <!-- <button class="botao-menu" id="botao-comecar-jogo">COMEÇAR</button> -->
-              <button class="botao-menu" id="reset-game-button">
-                RECOMEÇAR
+              <button  class="botao-menu" id="botao-comecar-jogo">
+                COMEÇAR
               </button>
+              <div id="container-reset-jogo" class="display">
+                     <!-- <p id="aviso-inicio-jogo">sua pontuação foi:</p> -->
+                <!-- <p id="aviso-inicio-jogo">Clique em tentar novamente para reiniciar</p> -->
+                
+                <button class="botao-menu-pos-derrota" id="botao-tentar-novamente">
+                  Tentar Novamente
+                </button>
+                <button class="botao-menu-pos-derrota" id="botao-novo-jogador">
+                  Novo Jogador
+                </button>
+              </div>
             </div>
           </div>
           <button
             class="triangulo triangulo-direita triangulo-direita-apagado"
             id="botao-direita"
+            disabled
           ></button>
         </div>
 
         <button
           class="triangulo triangulo-baixo triangulo-baixo-apagado"
           id="botao-baixo"
+          disabled
         ></button>
       </div>
     </main>
@@ -99,49 +113,73 @@
         </span>
       </div>
 
-      <div id="regras-container"  >
-        <div id="titulo-regra-cotainer" >
+      <div id="regras-container">
+        <div id="titulo-regra-cotainer">
           <h2>Regras do Jogo</h2>
         </div>
         <ul id="regras-lista" class="gradient-border">
           <li class="regra-item">
             <p class="regra-text">
-             1° O Gênius irá fazer uma sequência e você deve repeti-la.
+              1° O Gênius irá fazer uma sequência e você deve repeti-la.
             </p>
           </li>
           <li class="regra-item">
             <p class="regra-text">
-              2° Ele começa ascendendo um dos botões aleatoriamente. Você deve seguir o padrão, respequitivamente nas cores exibidas.
+              2° Ele começa ascendendo um dos botões aleatoriamente. Você deve
+              seguir o padrão, respequitivamente nas cores exibidas.
             </p>
           </li>
           <li class="regra-item">
             <p class="regra-text">
-              3° Caso você acerte, ele irá repetir o processo. Sempre ascendendo uma cor a mais da rodada anterior.
+              3° Caso você acerte, ele irá repetir o processo. Sempre ascendendo
+              uma cor a mais da rodada anterior.
             </p>
           </li>
 
           <li class="regra-item">
             <p class="regra-text">
-              4° Você deve clicar setas respeitando a sequencia exata que o Gênius te mostrou.
+              4° Você deve clicar setas respeitando a sequencia exata que o
+              Gênius te mostrou.
             </p>
           </li>
           <li class="regra-item">
             <p class="regra-text">
-              5° Isso se repetirá aumentado a quantidade de luzes acessas a cada nova rodada que você acertar.
+              5° Isso se repetirá aumentado a quantidade de luzes acessas a cada
+              nova rodada que você acertar.
             </p>
           </li>
           <li class="regra-item">
             <p class="regra-text">
-              6° Caso você clique em uma seta que não seja a correta da sequência apresentada, será emitido uma mensagem de
-              derrota.
+              6° Caso você clique em uma seta que não seja a correta da
+              sequência apresentada, será emitido uma mensagem de derrota.
             </p>
           </li>
         </ul>
       </div>
     </footer>
 
-    
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <h2 class="rainbow-text">Bora exercitar a memoria</h2>
+        <form id="form-inicio-jogo">
+          <label for="nome">Nome do jogador:</label>
+          <input type="text" id="nome" name="nome" required />
+
+          <label for="dificuldade">Dificuldade:</label>
+          <select id="dificuldade" name="dificuldade">
+            <option value="FACIL">Facil</option>
+            <option value="MEDIO">Médio</option>
+            <option value="DIFICIL">Difícil</option>
+          </select>
+
+          <div class="botoes">
+            <button type="button" id="fechar-modal">Cancelar</button>
+            <button type="submit" id="iniciar-partida">Iniciar Partida</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script type="module" src="./src/script.js"></script>
   </body>
 </html>
-
