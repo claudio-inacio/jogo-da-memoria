@@ -26,7 +26,7 @@ const modal = document.getElementById('modal');
 const menuStart = document.getElementById('menu-redondo');
 const botaoAbrirModalInicioPartida = document.getElementById('botao-comecar-jogo');
 const botaoReabrirModalInicioPartida = document.getElementById('botao-novo-jogador');
-const botaoIniciarPartida = document.getElementById('iniciar-partida');
+const botaoNovaTentativa = document.getElementById('botao-tentar-novamente');
 const containerReiniciarJogo = document.getElementById('container-reset-jogo');
 const botaoFecharModal = document.getElementById('fechar-modal');
 const formInicioJogo = document.getElementById('form-inicio-jogo');
@@ -119,6 +119,10 @@ botaoAbrirModalInicioPartida.addEventListener('click', () => {
 });
 botaoReabrirModalInicioPartida.addEventListener('click', () => {
     modal.classList.remove('hidden');
+});
+botaoNovaTentativa.addEventListener('click', () => {
+    avisoReinicioPartida();
+    containerReiniciarJogo.classList.add('display');
 });
 botaoFecharModal.addEventListener('click', () => {
     modal.classList.add('hidden');

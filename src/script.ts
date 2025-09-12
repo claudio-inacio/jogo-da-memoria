@@ -30,8 +30,8 @@ const botaoAbrirModalInicioPartida = document.getElementById(
 ) as HTMLButtonElement;
 const botaoReabrirModalInicioPartida = document.getElementById(
   'botao-novo-jogador') as HTMLButtonElement;
-const botaoIniciarPartida = document.getElementById(
-  'iniciar-partida'
+const botaoNovaTentativa = document.getElementById(
+  'botao-tentar-novamente'
 ) as HTMLButtonElement;
 const containerReiniciarJogo = document.getElementById(
   'container-reset-jogo'
@@ -137,8 +137,6 @@ function validarJogadaJogador(jogada: number): void {
   // }
 }
 
-
-
 async function jogadaMaquina(): Promise<void> {
   for (const numero of sequenciaMaquina) {
     switch (numero) {
@@ -184,6 +182,10 @@ botaoAbrirModalInicioPartida.addEventListener('click', () => {
 });
 botaoReabrirModalInicioPartida.addEventListener('click', () => {
   modal.classList.remove('hidden');
+});
+botaoNovaTentativa.addEventListener('click', () => {
+  avisoReinicioPartida();
+    containerReiniciarJogo.classList.add('display');
 });
 botaoFecharModal.addEventListener('click', () => {
   modal.classList.add('hidden');
