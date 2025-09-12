@@ -55,7 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function validarJogadaJogador(jogada) {
     if (!vezJogador)
         return;
-    if (sequenciaMaquina[length - 1] !== jogada) {
+    console.log({ jogada });
+    console.log(sequenciaMaquina[sequenciaMaquina.length - 1]);
+    if (sequenciaMaquina[sequenciaMaquina.length - 1] !== jogada) {
         vezJogador = false;
         habilitarBotoes(vezJogador);
         qtdAcertos = sequenciaMaquina.length;
@@ -63,7 +65,8 @@ function validarJogadaJogador(jogada) {
         sequenciaMaquina = [];
         paragrafoAvisoInicioJogo.innerText = `Game Over! ${jogadorAtual}, sua pontuação foi: ${qtdAcertos}`;
         setTimeout(() => {
-            paragrafoAvisoInicioJogo.innerText = "Desanima não! Bora pra mais uma tentativa.";
+            paragrafoAvisoInicioJogo.innerText =
+                'Desanima não! Bora pra mais uma tentativa.';
         }, 5000);
         setTimeout(() => {
             paragrafoAvisoInicioJogo.innerText = '';
@@ -111,7 +114,7 @@ function jogadaMaquina() {
             yield new Promise((resolve) => setTimeout(resolve, 200));
             habilitarBotoes(vezJogador);
         }
-        paragrafoAvisoInicioJogo.innerText = "Sua vez!";
+        paragrafoAvisoInicioJogo.innerText = 'Sua vez!';
     });
 }
 botaoAbrirModalInicioPartida.addEventListener('click', () => {
@@ -131,7 +134,8 @@ const paragrafoAvisoInicioJogo = document.createElement('p');
 menuStart.append(paragrafoAvisoInicioJogo);
 function avisoReinicioPartida() {
     sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
-    paragrafoAvisoInicioJogo.innerText = 'Boaaa! Desiste não, agora você vai destruir...';
+    paragrafoAvisoInicioJogo.innerText =
+        'Boaaa! Desiste não, agora você vai destruir...';
     setTimeout(() => {
         paragrafoAvisoInicioJogo.innerText = 'Observe atentamente a sequencia';
         setTimeout(() => {
@@ -152,9 +156,12 @@ function avisoInicioPartida() {
     };
     sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
     botaoAbrirModalInicioPartida.classList.add('display');
-    paragrafoAvisoInicioJogo.innerText = mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';
+    paragrafoAvisoInicioJogo.innerText =
+        mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';
     setTimeout(() => {
-        paragrafoAvisoInicioJogo.innerText = mensagemDeInicioDefinitivo[dificuldadeSelecionada] || 'A partida vai começar em breve...';
+        paragrafoAvisoInicioJogo.innerText =
+            mensagemDeInicioDefinitivo[dificuldadeSelecionada] ||
+                'A partida vai começar em breve...';
         setTimeout(() => {
             paragrafoAvisoInicioJogo.innerText = 'Observe atentamente a sequencia';
             setTimeout(() => {
