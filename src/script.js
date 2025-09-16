@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { ascenderLuzTrianguloCima, apagarLuzTrianguloCima, ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, } from './luzes.js';
-import { numeroAleatorio, piscarLuz, habilitarBotoes } from './utils.js';
+import { numeroAleatorio, piscarLuz, habilitarBotoes, addPontuacaoAtual, } from './utils.js';
 let vezJogador = false;
 let qtdAcertos = 0;
 let sequenciaMaquina = [];
@@ -34,36 +34,44 @@ const botaoTopo = document.getElementById('botao-cima');
 const botaoBaixo = document.getElementById('botao-baixo');
 const botaoEsquerda = document.getElementById('botao-esquerda');
 const botaoDireita = document.getElementById('botao-direita');
+const pontuacaoAtual = document.getElementById('pontos-atuais');
+const ultimosPontos = document.getElementById('ultimos-pontos');
+let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
+ultimosPontos.innerHTML = ultimaPontuacao.toString();
 document.addEventListener('DOMContentLoaded', () => {
     botaoTopo === null || botaoTopo === void 0 ? void 0 : botaoTopo.addEventListener('click', () => {
         piscarLuz(ascenderLuzTrianguloCima, apagarLuzTrianguloCima, tempoLuzAcesa.CLIQUE_JOGADOR);
-        validarJogadaJogador(1);
+        validarSequenciaJogador(1);
     });
     botaoBaixo === null || botaoBaixo === void 0 ? void 0 : botaoBaixo.addEventListener('click', () => {
         piscarLuz(ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, tempoLuzAcesa.CLIQUE_JOGADOR);
-        validarJogadaJogador(2);
+        validarSequenciaJogador(2);
     });
     botaoEsquerda === null || botaoEsquerda === void 0 ? void 0 : botaoEsquerda.addEventListener('click', () => {
         piscarLuz(ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, tempoLuzAcesa.CLIQUE_JOGADOR);
-        validarJogadaJogador(3);
+        validarSequenciaJogador(3);
     });
     botaoDireita === null || botaoDireita === void 0 ? void 0 : botaoDireita.addEventListener('click', () => {
         piscarLuz(ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, tempoLuzAcesa.CLIQUE_JOGADOR);
-        validarJogadaJogador(4);
+        validarSequenciaJogador(4);
     });
 });
-function validarJogadaJogador(jogada) {
+function validarSequenciaJogador(jogada) {
     if (!vezJogador)
         return;
-    if (sequenciaMaquina[length - 1] !== jogada) {
+    sequenciaJogador.push(jogada);
+    const posicaoAtual = sequenciaJogador.length === 0 ? 0 : sequenciaJogador.length - 1;
+    if (sequenciaMaquina[posicaoAtual] !== sequenciaJogador[posicaoAtual]) {
         vezJogador = false;
         habilitarBotoes(vezJogador);
-        qtdAcertos = sequenciaMaquina.length;
+        qtdAcertos = sequenciaMaquina.length - 1 || 0;
+        localStorage.setItem('ultimaPontuacao', qtdAcertos.toString());
         sequenciaJogador = [];
         sequenciaMaquina = [];
         paragrafoAvisoInicioJogo.innerText = `Game Over! ${jogadorAtual}, sua pontuação foi: ${qtdAcertos}`;
         setTimeout(() => {
-            paragrafoAvisoInicioJogo.innerText = "Desanima não! Bora pra mais uma tentativa.";
+            paragrafoAvisoInicioJogo.innerText =
+                'Desanima não! Bora pra mais uma tentativa.';
         }, 5000);
         setTimeout(() => {
             paragrafoAvisoInicioJogo.innerText = '';
@@ -71,27 +79,27 @@ function validarJogadaJogador(jogada) {
         }, 10000);
         return;
     }
-    // const indiceAtual = sequenciaMaquina.length - (sequenciaMaquina.length - sequenciaMaquina.indexOf(numero));
-    // if (numero === sequenciaMaquina[indiceAtual]) {
-    //   if (indiceAtual === sequenciaMaquina.length - 1) {
-    //     vezJogador = false;
-    //     habilitarBotoes(vezJogador);
-    //     setTimeout(() => {
-    //       avisoInicioPartida();
-    //     }, 1000);
-    //   }
-    // } else {
-    //   alert(`Game Over! ${jogadorAtual}, sua pontuação foi: ${sequenciaMaquina.length - 1}`);
-    //   // Reiniciar o jogo
-    //   sequenciaMaquina = [];
-    //   vezJogador = false;
-    //   habilitarBotoes(vezJogador);
-    //   paragrafoAvisoInicioJogo.innerText = "Jogo reiniciado! Clique em 'Começar' para jogar novamente.";
-    //   botaoAbrirModalInicioPartida.classList.remove('display');
-    // }
+    for (let contador = 0; contador < sequenciaMaquina.length; contador++) {
+        if (sequenciaMaquina.length === sequenciaJogador.length &&
+            sequenciaMaquina[contador] === sequenciaJogador[contador]) {
+            qtdAcertos++;
+            addPontuacaoAtual(qtdAcertos);
+            vezJogador = false;
+            habilitarBotoes(vezJogador);
+            sequenciaJogador = [];
+            paragrafoAvisoInicioJogo.innerText = 'Parabéns você acertou!.';
+            setTimeout(() => {
+                paragrafoAvisoInicioJogo.innerText = 'Faça a nova sequência.';
+                setTimeout(() => {
+                    jogadaMaquina();
+                }, 2000);
+            }, 2000);
+        }
+    }
 }
 function jogadaMaquina() {
     return __awaiter(this, void 0, void 0, function* () {
+        sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
         for (const numero of sequenciaMaquina) {
             switch (numero) {
                 case 1:
@@ -107,11 +115,11 @@ function jogadaMaquina() {
                     yield piscarLuz(ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, dificuldadeSelecionada);
                     break;
             }
-            vezJogador = true;
-            yield new Promise((resolve) => setTimeout(resolve, 200));
-            habilitarBotoes(vezJogador);
+            yield new Promise((resolve) => setTimeout(resolve, 1000));
         }
-        paragrafoAvisoInicioJogo.innerText = "Sua vez!";
+        vezJogador = true;
+        habilitarBotoes(vezJogador);
+        paragrafoAvisoInicioJogo.innerText = 'Sua vez!';
     });
 }
 botaoAbrirModalInicioPartida.addEventListener('click', () => {
@@ -130,8 +138,12 @@ botaoFecharModal.addEventListener('click', () => {
 const paragrafoAvisoInicioJogo = document.createElement('p');
 menuStart.append(paragrafoAvisoInicioJogo);
 function avisoReinicioPartida() {
-    sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
-    paragrafoAvisoInicioJogo.innerText = 'Boaaa! Desiste não, agora você vai destruir...';
+    let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
+    ultimosPontos.innerHTML = ultimaPontuacao.toString();
+    qtdAcertos = 0;
+    addPontuacaoAtual(qtdAcertos);
+    paragrafoAvisoInicioJogo.innerText =
+        'Boaaa! Desiste não, agora você vai destruir...';
     setTimeout(() => {
         paragrafoAvisoInicioJogo.innerText = 'Observe atentamente a sequencia';
         setTimeout(() => {
@@ -140,6 +152,10 @@ function avisoReinicioPartida() {
     }, 3000);
 }
 function avisoInicioPartida() {
+    let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
+    ultimosPontos.innerHTML = ultimaPontuacao.toString();
+    qtdAcertos = 0;
+    addPontuacaoAtual(qtdAcertos);
     const mensagemDeEscolha = {
         [tempoLuzAcesa.FACIL]: 'Ótima escolha para praticar!',
         [tempoLuzAcesa.MEDIO]: 'Isso ai! Vamos evoluir.',
@@ -150,11 +166,14 @@ function avisoInicioPartida() {
         [tempoLuzAcesa.MEDIO]: 'Bora lá, você ja sabe como funciona né...',
         [tempoLuzAcesa.DIFICIL]: 'Nem pisca pra não perder a sequencia em...',
     };
-    sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
+    // sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
     botaoAbrirModalInicioPartida.classList.add('display');
-    paragrafoAvisoInicioJogo.innerText = mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';
+    paragrafoAvisoInicioJogo.innerText =
+        mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';
     setTimeout(() => {
-        paragrafoAvisoInicioJogo.innerText = mensagemDeInicioDefinitivo[dificuldadeSelecionada] || 'A partida vai começar em breve...';
+        paragrafoAvisoInicioJogo.innerText =
+            mensagemDeInicioDefinitivo[dificuldadeSelecionada] ||
+                'A partida vai começar em breve...';
         setTimeout(() => {
             paragrafoAvisoInicioJogo.innerText = 'Observe atentamente a sequencia';
             setTimeout(() => {
@@ -180,8 +199,6 @@ formInicioJogo.addEventListener('submit', (event) => {
     containerReiniciarJogo.classList.add('display');
     modal.classList.add('hidden');
     avisoInicioPartida();
-    console.log({ jogadorAtual });
-    console.log({ dificuldadeSelecionada });
 });
 // jogadaMaquina();
 //# sourceMappingURL=script.js.map

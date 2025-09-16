@@ -8,8 +8,12 @@ import {
   ascenderLuzTrianguloDireita,
   apagarLuzTrianguloDireita,
 } from './luzes.js';
-import { numeroAleatorio, piscarLuz, habilitarBotoes } from './utils.js';
-
+import {
+  numeroAleatorio,
+  piscarLuz,
+  habilitarBotoes,
+  addPontuacaoAtual,
+} from './utils.js';
 let vezJogador = false;
 let qtdAcertos = 0;
 let sequenciaMaquina: number[] = [];
@@ -23,13 +27,15 @@ const tempoLuzAcesa = {
   DIFICIL: 300,
 };
 let dificuldadeSelecionada = tempoLuzAcesa.FACIL;
+
 const modal = document.getElementById('modal') as HTMLDivElement;
 const menuStart = document.getElementById('menu-redondo') as HTMLDivElement;
 const botaoAbrirModalInicioPartida = document.getElementById(
   'botao-comecar-jogo'
 ) as HTMLButtonElement;
 const botaoReabrirModalInicioPartida = document.getElementById(
-  'botao-novo-jogador') as HTMLButtonElement;
+  'botao-novo-jogador'
+) as HTMLButtonElement;
 const botaoNovaTentativa = document.getElementById(
   'botao-tentar-novamente'
 ) as HTMLButtonElement;
@@ -43,101 +49,106 @@ const formInicioJogo = document.getElementById(
   'form-inicio-jogo'
 ) as HTMLFormElement;
 const botaoTopo = document.getElementById('botao-cima') as HTMLButtonElement;
-const botaoBaixo = document.getElementById(
-  'botao-baixo'
-) as HTMLButtonElement;
+const botaoBaixo = document.getElementById('botao-baixo') as HTMLButtonElement;
 const botaoEsquerda = document.getElementById(
   'botao-esquerda'
 ) as HTMLButtonElement;
 const botaoDireita = document.getElementById(
   'botao-direita'
 ) as HTMLButtonElement;
+const pontuacaoAtual = document.getElementById(
+  'pontos-atuais'
+) as HTMLParagraphElement;
+const ultimosPontos = document.getElementById(
+  'ultimos-pontos'
+) as HTMLParagraphElement;
+let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
+ultimosPontos.innerHTML = ultimaPontuacao.toString();
 
 document.addEventListener('DOMContentLoaded', () => {
-  botaoTopo?.addEventListener('click', () =>{
-
+  botaoTopo?.addEventListener('click', () => {
     piscarLuz(
       ascenderLuzTrianguloCima,
       apagarLuzTrianguloCima,
       tempoLuzAcesa.CLIQUE_JOGADOR
-    )
-    validarJogadaJogador(1);
-  }
-  );
-  botaoBaixo?.addEventListener('click', () =>{
-
+    );
+    validarSequenciaJogador(1);
+  });
+  botaoBaixo?.addEventListener('click', () => {
     piscarLuz(
       ascenderLuzTrianguloBaixo,
       apagarLuzTrianguloBaixo,
       tempoLuzAcesa.CLIQUE_JOGADOR
-    )
-     validarJogadaJogador(2);
-  }
-  );
+    );
+    validarSequenciaJogador(2);
+  });
   botaoEsquerda?.addEventListener('click', () => {
-
     piscarLuz(
       ascenderLuzTrianguloEsquerda,
       apagarLuzTrianguloEsquerda,
       tempoLuzAcesa.CLIQUE_JOGADOR
-    )
-    validarJogadaJogador(3);
-  }
-  );
+    );
+    validarSequenciaJogador(3);
+  });
   botaoDireita?.addEventListener('click', () => {
-
     piscarLuz(
       ascenderLuzTrianguloDireita,
       apagarLuzTrianguloDireita,
       tempoLuzAcesa.CLIQUE_JOGADOR
-    )
-    validarJogadaJogador(4);
-  }
-  );
+    );
+    validarSequenciaJogador(4);
+  });
 });
 
-
-function validarJogadaJogador(jogada: number): void {
+function validarSequenciaJogador(jogada: number): void {
   if (!vezJogador) return;
-  if(sequenciaMaquina[length - 1] !== jogada) {
+  sequenciaJogador.push(jogada);
+  const posicaoAtual =
+    sequenciaJogador.length === 0 ? 0 : sequenciaJogador.length - 1;
+  if (sequenciaMaquina[posicaoAtual] !== sequenciaJogador[posicaoAtual]) {
     vezJogador = false;
     habilitarBotoes(vezJogador);
-    qtdAcertos = sequenciaMaquina.length;
+    qtdAcertos = sequenciaMaquina.length - 1 || 0;
+    localStorage.setItem('ultimaPontuacao', qtdAcertos.toString());
     sequenciaJogador = [];
     sequenciaMaquina = [];
     paragrafoAvisoInicioJogo.innerText = `Game Over! ${jogadorAtual}, sua pontuação foi: ${qtdAcertos}`;
     setTimeout(() => {
-      paragrafoAvisoInicioJogo.innerText = "Desanima não! Bora pra mais uma tentativa.";
+      paragrafoAvisoInicioJogo.innerText =
+        'Desanima não! Bora pra mais uma tentativa.';
     }, 5000);
     setTimeout(() => {
-      paragrafoAvisoInicioJogo.innerText = ''
+      paragrafoAvisoInicioJogo.innerText = '';
       containerReiniciarJogo.classList.remove('display');
     }, 10000);
     return;
   }
 
+  for (let contador = 0; contador < sequenciaMaquina.length; contador++) {
+    if (
+      sequenciaMaquina.length === sequenciaJogador.length &&
+      sequenciaMaquina[contador] === sequenciaJogador[contador]
+    ) {
+      qtdAcertos++;
+      addPontuacaoAtual(qtdAcertos);
+      vezJogador = false;
+      habilitarBotoes(vezJogador);
+      sequenciaJogador = [];
+      paragrafoAvisoInicioJogo.innerText = 'Parabéns você acertou!.';
 
-  // const indiceAtual = sequenciaMaquina.length - (sequenciaMaquina.length - sequenciaMaquina.indexOf(numero));
-  // if (numero === sequenciaMaquina[indiceAtual]) {
-  //   if (indiceAtual === sequenciaMaquina.length - 1) {
-  //     vezJogador = false;
-  //     habilitarBotoes(vezJogador);
-  //     setTimeout(() => {
-  //       avisoInicioPartida();
-  //     }, 1000);
-  //   }
-  // } else {
-  //   alert(`Game Over! ${jogadorAtual}, sua pontuação foi: ${sequenciaMaquina.length - 1}`);
-  //   // Reiniciar o jogo
-  //   sequenciaMaquina = [];
-  //   vezJogador = false;
-  //   habilitarBotoes(vezJogador);
-  //   paragrafoAvisoInicioJogo.innerText = "Jogo reiniciado! Clique em 'Começar' para jogar novamente.";
-  //   botaoAbrirModalInicioPartida.classList.remove('display');
-  // }
+      setTimeout(() => {
+        paragrafoAvisoInicioJogo.innerText = 'Faça a nova sequência.';
+
+        setTimeout(() => {
+          jogadaMaquina();
+        }, 2000);
+      }, 2000);
+    }
+  }
 }
 
 async function jogadaMaquina(): Promise<void> {
+  sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
   for (const numero of sequenciaMaquina) {
     switch (numero) {
       case 1:
@@ -170,11 +181,11 @@ async function jogadaMaquina(): Promise<void> {
         break;
     }
 
-    vezJogador = true;
-    await new Promise((resolve) => setTimeout(resolve, 200));
-    habilitarBotoes(vezJogador);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-  paragrafoAvisoInicioJogo.innerText = "Sua vez!"
+  vezJogador = true;
+  habilitarBotoes(vezJogador);
+  paragrafoAvisoInicioJogo.innerText = 'Sua vez!';
 }
 
 botaoAbrirModalInicioPartida.addEventListener('click', () => {
@@ -185,7 +196,7 @@ botaoReabrirModalInicioPartida.addEventListener('click', () => {
 });
 botaoNovaTentativa.addEventListener('click', () => {
   avisoReinicioPartida();
-    containerReiniciarJogo.classList.add('display');
+  containerReiniciarJogo.classList.add('display');
 });
 botaoFecharModal.addEventListener('click', () => {
   modal.classList.add('hidden');
@@ -195,31 +206,44 @@ const paragrafoAvisoInicioJogo = document.createElement('p');
 menuStart.append(paragrafoAvisoInicioJogo);
 
 function avisoReinicioPartida() {
-  sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
-    paragrafoAvisoInicioJogo.innerText = 'Boaaa! Desiste não, agora você vai destruir...';
+  let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
+  ultimosPontos.innerHTML = ultimaPontuacao.toString();
+  qtdAcertos = 0;
+  addPontuacaoAtual(qtdAcertos);
+  paragrafoAvisoInicioJogo.innerText =
+    'Boaaa! Desiste não, agora você vai destruir...';
+  setTimeout(() => {
+    paragrafoAvisoInicioJogo.innerText = 'Observe atentamente a sequencia';
     setTimeout(() => {
-      paragrafoAvisoInicioJogo.innerText = 'Observe atentamente a sequencia';
-      setTimeout(() => {
-        jogadaMaquina();
-      }, 2000);
-    }, 3000);
+      jogadaMaquina();
+    }, 2000);
+  }, 3000);
 }
 function avisoInicioPartida() {
+  let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
+  ultimosPontos.innerHTML = ultimaPontuacao.toString();
+  qtdAcertos = 0;
+  addPontuacaoAtual(qtdAcertos);
+
   const mensagemDeEscolha = {
     [tempoLuzAcesa.FACIL]: 'Ótima escolha para praticar!',
     [tempoLuzAcesa.MEDIO]: 'Isso ai! Vamos evoluir.',
     [tempoLuzAcesa.DIFICIL]: 'Hora de se desafiar !',
-  }
+  };
   const mensagemDeInicioDefinitivo = {
-    [tempoLuzAcesa.FACIL]: 'Fique tranquilo, as luzes vão ascender lentamente...',
+    [tempoLuzAcesa.FACIL]:
+      'Fique tranquilo, as luzes vão ascender lentamente...',
     [tempoLuzAcesa.MEDIO]: 'Bora lá, você ja sabe como funciona né...',
     [tempoLuzAcesa.DIFICIL]: 'Nem pisca pra não perder a sequencia em...',
-  }
-  sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
+  };
+  // sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
   botaoAbrirModalInicioPartida.classList.add('display');
-  paragrafoAvisoInicioJogo.innerText = mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';
+  paragrafoAvisoInicioJogo.innerText =
+    mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';
   setTimeout(() => {
-    paragrafoAvisoInicioJogo.innerText = mensagemDeInicioDefinitivo[dificuldadeSelecionada] || 'A partida vai começar em breve...';
+    paragrafoAvisoInicioJogo.innerText =
+      mensagemDeInicioDefinitivo[dificuldadeSelecionada] ||
+      'A partida vai começar em breve...';
     setTimeout(() => {
       paragrafoAvisoInicioJogo.innerText = 'Observe atentamente a sequencia';
       setTimeout(() => {
@@ -230,7 +254,6 @@ function avisoInicioPartida() {
 }
 
 formInicioJogo.addEventListener('submit', (event) => {
-
   event.preventDefault();
   const nome = (document.getElementById('nome') as HTMLInputElement).value;
   const dificuldade = (
@@ -245,13 +268,11 @@ formInicioJogo.addEventListener('submit', (event) => {
     dificuldadeSelecionada = tempoLuzAcesa.DIFICIL;
   }
   jogadorAtual = nome;
-  
+
   containerReiniciarJogo.classList.add('display');
   modal.classList.add('hidden');
 
   avisoInicioPartida();
-  console.log({ jogadorAtual });
-  console.log({ dificuldadeSelecionada });
 });
 
 // jogadaMaquina();
