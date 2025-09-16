@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { ascenderLuzTrianguloCima, apagarLuzTrianguloCima, ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, } from './luzes.js';
-import { numeroAleatorio, piscarLuz, habilitarBotoes, addPontuacaoAtual, } from './utils.js';
+import { numeroAleatorio, piscarLuz, habilitarBotoes, addPontuacaoAtual, verficarMelhorPontuacao, } from './utils.js';
 let vezJogador = false;
 let qtdAcertos = 0;
 let sequenciaMaquina = [];
@@ -37,8 +37,8 @@ const botaoDireita = document.getElementById('botao-direita');
 const pontuacaoAtual = document.getElementById('pontos-atuais');
 const ultimosPontos = document.getElementById('ultimos-pontos');
 let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
-ultimosPontos.innerHTML = ultimaPontuacao.toString();
 document.addEventListener('DOMContentLoaded', () => {
+    ultimosPontos.innerHTML = ultimaPontuacao.toString();
     botaoTopo === null || botaoTopo === void 0 ? void 0 : botaoTopo.addEventListener('click', () => {
         piscarLuz(ascenderLuzTrianguloCima, apagarLuzTrianguloCima, tempoLuzAcesa.CLIQUE_JOGADOR);
         validarSequenciaJogador(1);
@@ -77,6 +77,7 @@ function validarSequenciaJogador(jogada) {
             paragrafoAvisoInicioJogo.innerText = '';
             containerReiniciarJogo.classList.remove('display');
         }, 10000);
+        verficarMelhorPontuacao(jogadorAtual, qtdAcertos);
         return;
     }
     for (let contador = 0; contador < sequenciaMaquina.length; contador++) {

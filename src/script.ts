@@ -13,6 +13,7 @@ import {
   piscarLuz,
   habilitarBotoes,
   addPontuacaoAtual,
+  verficarMelhorPontuacao,
 } from './utils.js';
 let vezJogador = false;
 let qtdAcertos = 0;
@@ -63,9 +64,10 @@ const ultimosPontos = document.getElementById(
   'ultimos-pontos'
 ) as HTMLParagraphElement;
 let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
-ultimosPontos.innerHTML = ultimaPontuacao.toString();
+
 
 document.addEventListener('DOMContentLoaded', () => {
+  ultimosPontos.innerHTML = ultimaPontuacao.toString();
   botaoTopo?.addEventListener('click', () => {
     piscarLuz(
       ascenderLuzTrianguloCima,
@@ -100,6 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+
 function validarSequenciaJogador(jogada: number): void {
   if (!vezJogador) return;
   sequenciaJogador.push(jogada);
@@ -121,6 +125,7 @@ function validarSequenciaJogador(jogada: number): void {
       paragrafoAvisoInicioJogo.innerText = '';
       containerReiniciarJogo.classList.remove('display');
     }, 10000);
+    verficarMelhorPontuacao(jogadorAtual, qtdAcertos);
     return;
   }
 
