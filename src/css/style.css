@@ -102,7 +102,12 @@ div {
   justify-content: center;
   align-items: center;
 }
-#pontos {
+#pontos-atuais {
+  margin-left: 10px;
+  margin-right: 3px;
+  font-size: clamp(5px, 4vw, 20px);
+}
+#ultimos-pontos {
   margin-left: 10px;
   margin-right: 3px;
   font-size: clamp(5px, 4vw, 20px);
@@ -505,7 +510,7 @@ button:disabled {
   .pontuacao-item {
     margin: 2px 0;
   }
-  #pontos {
+  #pontos-atuais {
   }
   .placar-tittle-container.gold-tittle {
   }

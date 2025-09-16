@@ -8,6 +8,12 @@ const botaoEsquerda = document.getElementById(
 const botaoDireita = document.getElementById(
   'botao-direita'
 ) as HTMLButtonElement;
+const pontuacaoAtual = document.getElementById(
+  'pontos-atuais'
+) as HTMLParagraphElement;
+const ultimaPontuacao = document.getElementById(
+  'ultimos-pontos'
+) as HTMLParagraphElement;
 
 export function numeroAleatorio(max: number) {
   return Math.floor(Math.random() * max + 1);
@@ -32,5 +38,9 @@ export function habilitarBotoes(disabled: boolean) {
   botaoBaixo.disabled = !disabled;
   botaoEsquerda.disabled = !disabled;
   botaoDireita.disabled = !disabled;
+}
+
+export function addPontuacaoAtual(ptsAtual: number) {
+  pontuacaoAtual.innerHTML =  ptsAtual.toString();
 }
 
