@@ -7,8 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { habilitarBotoes } from './funcoes-utilitarias/habilitar-botoes/habilitarBotoes.js';
+import { geradorDeNumeroAleatorio } from './funcoes-utilitarias/numeros-aleatorios/geradorDeNumeroAleatorio.js';
+import { funcaoPiscarLuz } from './funcoes-utilitarias/piscar-luz/funcaoPiscarLuz.js';
+import { addPontuacaoAtual } from './funcoes-utilitarias/pontuacao-atual/addPontuacaoAtual.js';
+import { atualizaRankingJogador, exibirRanking, obterRanking } from './funcoes-utilitarias/valida-ranking/verificaPosicaoNoRanking.js';
+// import { verificaPosicaoNoRanking } from './funcoes-utilitarias/valida-ranking/verificaPosicaoNoRanking.js';
 import { ascenderLuzTrianguloCima, apagarLuzTrianguloCima, ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, } from './luzes.js';
-import { numeroAleatorio, piscarLuz, habilitarBotoes, addPontuacaoAtual, verficarMelhorPontuacao, } from './utils.js';
 let vezJogador = false;
 let qtdAcertos = 0;
 let sequenciaMaquina = [];
@@ -24,6 +29,7 @@ const tempoLuzAcesa = {
 let dificuldadeSelecionada = tempoLuzAcesa.FACIL;
 const modal = document.getElementById('modal');
 const menuStart = document.getElementById('menu-redondo');
+const rankingInicial = obterRanking();
 const botaoAbrirModalInicioPartida = document.getElementById('botao-comecar-jogo');
 const botaoReabrirModalInicioPartida = document.getElementById('botao-novo-jogador');
 const botaoNovaTentativa = document.getElementById('botao-tentar-novamente');
@@ -38,21 +44,22 @@ const pontuacaoAtual = document.getElementById('pontos-atuais');
 const ultimosPontos = document.getElementById('ultimos-pontos');
 let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
 document.addEventListener('DOMContentLoaded', () => {
+    exibirRanking(rankingInicial);
     ultimosPontos.innerHTML = ultimaPontuacao.toString();
     botaoTopo === null || botaoTopo === void 0 ? void 0 : botaoTopo.addEventListener('click', () => {
-        piscarLuz(ascenderLuzTrianguloCima, apagarLuzTrianguloCima, tempoLuzAcesa.CLIQUE_JOGADOR);
+        funcaoPiscarLuz(ascenderLuzTrianguloCima, apagarLuzTrianguloCima, tempoLuzAcesa.CLIQUE_JOGADOR);
         validarSequenciaJogador(1);
     });
     botaoBaixo === null || botaoBaixo === void 0 ? void 0 : botaoBaixo.addEventListener('click', () => {
-        piscarLuz(ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, tempoLuzAcesa.CLIQUE_JOGADOR);
+        funcaoPiscarLuz(ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, tempoLuzAcesa.CLIQUE_JOGADOR);
         validarSequenciaJogador(2);
     });
     botaoEsquerda === null || botaoEsquerda === void 0 ? void 0 : botaoEsquerda.addEventListener('click', () => {
-        piscarLuz(ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, tempoLuzAcesa.CLIQUE_JOGADOR);
+        funcaoPiscarLuz(ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, tempoLuzAcesa.CLIQUE_JOGADOR);
         validarSequenciaJogador(3);
     });
     botaoDireita === null || botaoDireita === void 0 ? void 0 : botaoDireita.addEventListener('click', () => {
-        piscarLuz(ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, tempoLuzAcesa.CLIQUE_JOGADOR);
+        funcaoPiscarLuz(ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, tempoLuzAcesa.CLIQUE_JOGADOR);
         validarSequenciaJogador(4);
     });
 });
@@ -63,7 +70,7 @@ function validarSequenciaJogador(jogada) {
     const posicaoAtual = sequenciaJogador.length === 0 ? 0 : sequenciaJogador.length - 1;
     if (sequenciaMaquina[posicaoAtual] !== sequenciaJogador[posicaoAtual]) {
         vezJogador = false;
-        habilitarBotoes(vezJogador);
+        habilitarBotoes([botaoBaixo, botaoDireita, botaoEsquerda, botaoTopo], vezJogador);
         qtdAcertos = sequenciaMaquina.length - 1 || 0;
         localStorage.setItem('ultimaPontuacao', qtdAcertos.toString());
         sequenciaJogador = [];
@@ -77,16 +84,16 @@ function validarSequenciaJogador(jogada) {
             paragrafoAvisoInicioJogo.innerText = '';
             containerReiniciarJogo.classList.remove('display');
         }, 10000);
-        verficarMelhorPontuacao(jogadorAtual, qtdAcertos);
+        atualizaRankingJogador(jogadorAtual, qtdAcertos);
         return;
     }
     for (let contador = 0; contador < sequenciaMaquina.length; contador++) {
         if (sequenciaMaquina.length === sequenciaJogador.length &&
             sequenciaMaquina[contador] === sequenciaJogador[contador]) {
             qtdAcertos++;
-            addPontuacaoAtual(qtdAcertos);
+            addPontuacaoAtual(pontuacaoAtual, qtdAcertos);
             vezJogador = false;
-            habilitarBotoes(vezJogador);
+            habilitarBotoes([botaoBaixo, botaoDireita, botaoEsquerda, botaoTopo], vezJogador);
             sequenciaJogador = [];
             paragrafoAvisoInicioJogo.innerText = 'Parabéns você acertou!.';
             setTimeout(() => {
@@ -100,26 +107,26 @@ function validarSequenciaJogador(jogada) {
 }
 function jogadaMaquina() {
     return __awaiter(this, void 0, void 0, function* () {
-        sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
+        sequenciaMaquina.push(geradorDeNumeroAleatorio(maximoDeNumerosAleatorio));
         for (const numero of sequenciaMaquina) {
             switch (numero) {
                 case 1:
-                    yield piscarLuz(ascenderLuzTrianguloCima, apagarLuzTrianguloCima, dificuldadeSelecionada);
+                    yield funcaoPiscarLuz(ascenderLuzTrianguloCima, apagarLuzTrianguloCima, dificuldadeSelecionada);
                     break;
                 case 2:
-                    yield piscarLuz(ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, dificuldadeSelecionada);
+                    yield funcaoPiscarLuz(ascenderLuzTrianguloBaixo, apagarLuzTrianguloBaixo, dificuldadeSelecionada);
                     break;
                 case 3:
-                    yield piscarLuz(ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, dificuldadeSelecionada);
+                    yield funcaoPiscarLuz(ascenderLuzTrianguloEsquerda, apagarLuzTrianguloEsquerda, dificuldadeSelecionada);
                     break;
                 case 4:
-                    yield piscarLuz(ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, dificuldadeSelecionada);
+                    yield funcaoPiscarLuz(ascenderLuzTrianguloDireita, apagarLuzTrianguloDireita, dificuldadeSelecionada);
                     break;
             }
             yield new Promise((resolve) => setTimeout(resolve, 1000));
         }
         vezJogador = true;
-        habilitarBotoes(vezJogador);
+        habilitarBotoes([botaoBaixo, botaoDireita, botaoEsquerda, botaoTopo], vezJogador);
         paragrafoAvisoInicioJogo.innerText = 'Sua vez!';
     });
 }
@@ -142,7 +149,7 @@ function avisoReinicioPartida() {
     let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
     ultimosPontos.innerHTML = ultimaPontuacao.toString();
     qtdAcertos = 0;
-    addPontuacaoAtual(qtdAcertos);
+    addPontuacaoAtual(pontuacaoAtual, qtdAcertos);
     paragrafoAvisoInicioJogo.innerText =
         'Boaaa! Desiste não, agora você vai destruir...';
     setTimeout(() => {
@@ -156,7 +163,7 @@ function avisoInicioPartida() {
     let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
     ultimosPontos.innerHTML = ultimaPontuacao.toString();
     qtdAcertos = 0;
-    addPontuacaoAtual(qtdAcertos);
+    addPontuacaoAtual(pontuacaoAtual, qtdAcertos);
     const mensagemDeEscolha = {
         [tempoLuzAcesa.FACIL]: 'Ótima escolha para praticar!',
         [tempoLuzAcesa.MEDIO]: 'Isso ai! Vamos evoluir.',
@@ -167,7 +174,6 @@ function avisoInicioPartida() {
         [tempoLuzAcesa.MEDIO]: 'Bora lá, você ja sabe como funciona né...',
         [tempoLuzAcesa.DIFICIL]: 'Nem pisca pra não perder a sequencia em...',
     };
-    // sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
     botaoAbrirModalInicioPartida.classList.add('display');
     paragrafoAvisoInicioJogo.innerText =
         mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';

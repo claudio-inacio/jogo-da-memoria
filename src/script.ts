@@ -1,3 +1,9 @@
+import { habilitarBotoes } from './funcoes-utilitarias/habilitar-botoes/habilitarBotoes.js';
+import { geradorDeNumeroAleatorio } from './funcoes-utilitarias/numeros-aleatorios/geradorDeNumeroAleatorio.js';
+import { funcaoPiscarLuz } from './funcoes-utilitarias/piscar-luz/funcaoPiscarLuz.js';
+import { addPontuacaoAtual } from './funcoes-utilitarias/pontuacao-atual/addPontuacaoAtual.js';
+import { atualizaRankingJogador, exibirRanking, obterRanking } from './funcoes-utilitarias/valida-ranking/verificaPosicaoNoRanking.js';
+// import { verificaPosicaoNoRanking } from './funcoes-utilitarias/valida-ranking/verificaPosicaoNoRanking.js';
 import {
   ascenderLuzTrianguloCima,
   apagarLuzTrianguloCima,
@@ -8,13 +14,6 @@ import {
   ascenderLuzTrianguloDireita,
   apagarLuzTrianguloDireita,
 } from './luzes.js';
-import {
-  numeroAleatorio,
-  piscarLuz,
-  habilitarBotoes,
-  addPontuacaoAtual,
-  verficarMelhorPontuacao,
-} from './utils.js';
 let vezJogador = false;
 let qtdAcertos = 0;
 let sequenciaMaquina: number[] = [];
@@ -28,9 +27,9 @@ const tempoLuzAcesa = {
   DIFICIL: 300,
 };
 let dificuldadeSelecionada = tempoLuzAcesa.FACIL;
-
 const modal = document.getElementById('modal') as HTMLDivElement;
 const menuStart = document.getElementById('menu-redondo') as HTMLDivElement;
+const rankingInicial = obterRanking()
 const botaoAbrirModalInicioPartida = document.getElementById(
   'botao-comecar-jogo'
 ) as HTMLButtonElement;
@@ -67,9 +66,10 @@ let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  exibirRanking(rankingInicial);
   ultimosPontos.innerHTML = ultimaPontuacao.toString();
   botaoTopo?.addEventListener('click', () => {
-    piscarLuz(
+    funcaoPiscarLuz(
       ascenderLuzTrianguloCima,
       apagarLuzTrianguloCima,
       tempoLuzAcesa.CLIQUE_JOGADOR
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     validarSequenciaJogador(1);
   });
   botaoBaixo?.addEventListener('click', () => {
-    piscarLuz(
+    funcaoPiscarLuz(
       ascenderLuzTrianguloBaixo,
       apagarLuzTrianguloBaixo,
       tempoLuzAcesa.CLIQUE_JOGADOR
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     validarSequenciaJogador(2);
   });
   botaoEsquerda?.addEventListener('click', () => {
-    piscarLuz(
+    funcaoPiscarLuz(
       ascenderLuzTrianguloEsquerda,
       apagarLuzTrianguloEsquerda,
       tempoLuzAcesa.CLIQUE_JOGADOR
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     validarSequenciaJogador(3);
   });
   botaoDireita?.addEventListener('click', () => {
-    piscarLuz(
+    funcaoPiscarLuz(
       ascenderLuzTrianguloDireita,
       apagarLuzTrianguloDireita,
       tempoLuzAcesa.CLIQUE_JOGADOR
@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
 function validarSequenciaJogador(jogada: number): void {
   if (!vezJogador) return;
   sequenciaJogador.push(jogada);
@@ -111,7 +110,7 @@ function validarSequenciaJogador(jogada: number): void {
     sequenciaJogador.length === 0 ? 0 : sequenciaJogador.length - 1;
   if (sequenciaMaquina[posicaoAtual] !== sequenciaJogador[posicaoAtual]) {
     vezJogador = false;
-    habilitarBotoes(vezJogador);
+    habilitarBotoes([botaoBaixo, botaoDireita, botaoEsquerda, botaoTopo], vezJogador);
     qtdAcertos = sequenciaMaquina.length - 1 || 0;
     localStorage.setItem('ultimaPontuacao', qtdAcertos.toString());
     sequenciaJogador = [];
@@ -125,7 +124,7 @@ function validarSequenciaJogador(jogada: number): void {
       paragrafoAvisoInicioJogo.innerText = '';
       containerReiniciarJogo.classList.remove('display');
     }, 10000);
-    verficarMelhorPontuacao(jogadorAtual, qtdAcertos);
+    atualizaRankingJogador(jogadorAtual, qtdAcertos);
     return;
   }
 
@@ -135,9 +134,9 @@ function validarSequenciaJogador(jogada: number): void {
       sequenciaMaquina[contador] === sequenciaJogador[contador]
     ) {
       qtdAcertos++;
-      addPontuacaoAtual(qtdAcertos);
+      addPontuacaoAtual(pontuacaoAtual, qtdAcertos);
       vezJogador = false;
-      habilitarBotoes(vezJogador);
+      habilitarBotoes([botaoBaixo, botaoDireita, botaoEsquerda, botaoTopo], vezJogador);
       sequenciaJogador = [];
       paragrafoAvisoInicioJogo.innerText = 'Parabéns você acertou!.';
 
@@ -153,32 +152,32 @@ function validarSequenciaJogador(jogada: number): void {
 }
 
 async function jogadaMaquina(): Promise<void> {
-  sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
+  sequenciaMaquina.push(geradorDeNumeroAleatorio(maximoDeNumerosAleatorio));
   for (const numero of sequenciaMaquina) {
     switch (numero) {
       case 1:
-        await piscarLuz(
+        await funcaoPiscarLuz(
           ascenderLuzTrianguloCima,
           apagarLuzTrianguloCima,
           dificuldadeSelecionada
         );
         break;
       case 2:
-        await piscarLuz(
+        await funcaoPiscarLuz(
           ascenderLuzTrianguloBaixo,
           apagarLuzTrianguloBaixo,
           dificuldadeSelecionada
         );
         break;
       case 3:
-        await piscarLuz(
+        await funcaoPiscarLuz(
           ascenderLuzTrianguloEsquerda,
           apagarLuzTrianguloEsquerda,
           dificuldadeSelecionada
         );
         break;
       case 4:
-        await piscarLuz(
+        await funcaoPiscarLuz(
           ascenderLuzTrianguloDireita,
           apagarLuzTrianguloDireita,
           dificuldadeSelecionada
@@ -189,7 +188,7 @@ async function jogadaMaquina(): Promise<void> {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
   vezJogador = true;
-  habilitarBotoes(vezJogador);
+  habilitarBotoes([botaoBaixo, botaoDireita, botaoEsquerda, botaoTopo], vezJogador);
   paragrafoAvisoInicioJogo.innerText = 'Sua vez!';
 }
 
@@ -214,7 +213,7 @@ function avisoReinicioPartida() {
   let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
   ultimosPontos.innerHTML = ultimaPontuacao.toString();
   qtdAcertos = 0;
-  addPontuacaoAtual(qtdAcertos);
+  addPontuacaoAtual(pontuacaoAtual, qtdAcertos);
   paragrafoAvisoInicioJogo.innerText =
     'Boaaa! Desiste não, agora você vai destruir...';
   setTimeout(() => {
@@ -228,7 +227,7 @@ function avisoInicioPartida() {
   let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
   ultimosPontos.innerHTML = ultimaPontuacao.toString();
   qtdAcertos = 0;
-  addPontuacaoAtual(qtdAcertos);
+  addPontuacaoAtual(pontuacaoAtual, qtdAcertos);
 
   const mensagemDeEscolha = {
     [tempoLuzAcesa.FACIL]: 'Ótima escolha para praticar!',
@@ -241,7 +240,6 @@ function avisoInicioPartida() {
     [tempoLuzAcesa.MEDIO]: 'Bora lá, você ja sabe como funciona né...',
     [tempoLuzAcesa.DIFICIL]: 'Nem pisca pra não perder a sequencia em...',
   };
-  // sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
   botaoAbrirModalInicioPartida.classList.add('display');
   paragrafoAvisoInicioJogo.innerText =
     mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';
