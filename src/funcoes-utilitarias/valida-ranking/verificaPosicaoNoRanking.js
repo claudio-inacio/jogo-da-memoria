@@ -44,5 +44,6 @@ export function atualizaRankingJogador(nomeJogador, pontos) {
     }
     exibirRanking(ranking);
     salvarRanking(ranking);
+    return ranking;
 }
 //# sourceMappingURL=verificaPosicaoNoRanking.js.map

@@ -41,7 +41,7 @@ export function exibirRanking(ranking: Ranking): void {
   })
 }
 
-export function atualizaRankingJogador(nomeJogador: string, pontos: number){
+export function atualizaRankingJogador(nomeJogador: string, pontos: number): Ranking{
   const ranking = obterRanking();
 
     if (pontos >= ranking.primeiroLugar.pontos) {
@@ -57,4 +57,5 @@ export function atualizaRankingJogador(nomeJogador: string, pontos: number){
 
   exibirRanking(ranking);
   salvarRanking(ranking);
+  return ranking;
 }
