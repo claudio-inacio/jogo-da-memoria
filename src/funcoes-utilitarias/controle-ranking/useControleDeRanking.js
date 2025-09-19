@@ -46,4 +46,4 @@ export function atualizaRankingJogador(nomeJogador, pontos) {
     salvarRanking(ranking);
     return ranking;
 }
-//# sourceMappingURL=verificaPosicaoNoRanking.js.map
+//# sourceMappingURL=useControleDeRanking.js.map

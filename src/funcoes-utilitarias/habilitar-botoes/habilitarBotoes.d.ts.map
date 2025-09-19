@@ -1,1 +1,1 @@
-{"version":3,"file":"habilitarBotoes.d.ts","sourceRoot":"","sources":["habilitarBotoes.ts"],"names":[],"mappings":"AACA,wBAAgB,eAAe,CAAC,OAAO,EAAE,iBAAiB,EAAE,EAAE,SAAS,EAAE,OAAO,QAI/E"}
+{"version":3,"file":"habilitarBotoes.d.ts","sourceRoot":"","sources":["habilitarBotoes.ts"],"names":[],"mappings":"AASA,wBAAgB,eAAe,CAAC,OAAO,EAAE,iBAAiB,EAAE,EAAE,SAAS,EAAE,OAAO,QAI/E;AACD,wBAAgB,oBAAoB,CAAC,SAAS,EAAE,OAAO,QAKtD"}

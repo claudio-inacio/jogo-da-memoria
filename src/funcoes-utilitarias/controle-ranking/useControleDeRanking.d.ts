@@ -12,4 +12,4 @@ export declare function salvarRanking(ranking: Ranking): void;
 export declare function exibirRanking(ranking: Ranking): void;
 export declare function atualizaRankingJogador(nomeJogador: string, pontos: number): Ranking;
 export {};
-//# sourceMappingURL=verificaPosicaoNoRanking.d.ts.map
+//# sourceMappingURL=useControleDeRanking.d.ts.map

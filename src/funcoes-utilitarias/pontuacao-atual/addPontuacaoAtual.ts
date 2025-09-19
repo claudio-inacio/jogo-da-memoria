@@ -1,5 +1,5 @@
 
 
 export function addPontuacaoAtual(elemento: HTMLElement, ptsAtuais: number) {
-    elemento.innerHTML = ptsAtuais.toString();
+    elemento.innerHTML = ptsAtuais.toString();    
 }
