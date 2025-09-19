@@ -12,7 +12,6 @@ describe('habilitarBotoes', () => {
     ];
   });
 
-
   test('desabilita todos os botões quando isEnabled = true', () => {
     habilitarBotoes(botoes, false);
 

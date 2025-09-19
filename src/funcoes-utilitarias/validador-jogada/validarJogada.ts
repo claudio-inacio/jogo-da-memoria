@@ -15,20 +15,24 @@ interface PropsValidacaoJogada {
 interface PropsTratativaDerrota
   extends Pick<
     PropsValidacaoJogada,
-    'vezJogador' | 'handleResetArrayMaquina' | 'sequenciaMaquina' | 'jogadorAtual' | 'paragrafoAvisoInicioJogo'
+    | 'vezJogador'
+    | 'handleResetArrayMaquina'
+    | 'sequenciaMaquina'
+    | 'jogadorAtual'
+    | 'paragrafoAvisoInicioJogo'
   > {}
 interface PropsTratatovaAcerto
   extends Pick<
     PropsValidacaoJogada,
-    'vezJogador' | 'jogadaMaquina' | 'sequenciaMaquina' | 'paragrafoAvisoInicioJogo'
+    | 'vezJogador'
+    | 'jogadaMaquina'
+    | 'sequenciaMaquina'
+    | 'paragrafoAvisoInicioJogo'
   > {}
 
 let sequenciaJogador: number[] = [];
 let qtdAcertos: number = 0;
 
-const containerReiniciarJogo = document.getElementById(
-  'container-reset-jogo'
-) as HTMLButtonElement;
 const pontuacaoAtual = document.getElementById(
   'pontos-atuais'
 ) as HTMLParagraphElement;
@@ -47,13 +51,16 @@ function tratativaDeDerrota({
   handleResetArrayMaquina,
   paragrafoAvisoInicioJogo,
 }: PropsTratativaDerrota) {
+  const containerReiniciarJogo = document.getElementById(
+    'container-reset-jogo'
+  ) as HTMLButtonElement;
+
   vezJogador = false;
   sequenciaJogador = [];
   habilitarTodosBotoes(vezJogador);
   atualizaQtdAcertos(sequenciaMaquina.length - 1 || 0);
   localStorage.setItem('ultimaPontuacao', qtdAcertos.toString());
   handleResetArrayMaquina();
-  sequenciaMaquina = [];
   paragrafoAvisoInicioJogo.innerText = `Você Perdeu :( ${jogadorAtual}, sua pontuação foi: ${qtdAcertos}`;
   setTimeout(() => {
     paragrafoAvisoInicioJogo.innerText =
@@ -72,18 +79,18 @@ function tratativaAcerto({
   jogadaMaquina,
   paragrafoAvisoInicioJogo,
 }: PropsTratatovaAcerto) {
-    atualizaQtdAcertos(sequenciaMaquina.length);
-    addPontuacaoAtual(pontuacaoAtual, qtdAcertos);
-    vezJogador = false;
-    habilitarTodosBotoes(vezJogador);
-    sequenciaJogador = [];
-    paragrafoAvisoInicioJogo.innerText = 'Parabéns você acertou!.';
+  atualizaQtdAcertos(sequenciaMaquina.length);
+  addPontuacaoAtual(pontuacaoAtual, qtdAcertos);
+  vezJogador = false;
+  habilitarTodosBotoes(vezJogador);
+  sequenciaJogador = [];
+  paragrafoAvisoInicioJogo.innerText = 'Parabéns você acertou!.';
+  setTimeout(() => {
+    paragrafoAvisoInicioJogo.innerText = 'Faça a nova sequência.';
     setTimeout(() => {
-      paragrafoAvisoInicioJogo.innerText = 'Faça a nova sequência.';
-      setTimeout(() => {
-        return jogadaMaquina();
-      }, 2000);
+      return jogadaMaquina();
     }, 2000);
+  }, 2000);
 }
 
 export function validadorDeJogada({
@@ -101,9 +108,22 @@ export function validadorDeJogada({
     sequenciaJogador.length === 0 ? 0 : sequenciaJogador.length - 1;
 
   if (sequenciaMaquina[posicaoAtual] !== sequenciaJogador[posicaoAtual]) {
-    return tratativaDeDerrota({jogadorAtual, handleResetArrayMaquina, vezJogador, paragrafoAvisoInicioJogo,sequenciaMaquina })
+    return tratativaDeDerrota({
+      jogadorAtual,
+      handleResetArrayMaquina,
+      vezJogador,
+      paragrafoAvisoInicioJogo,
+      sequenciaMaquina,
+    });
   }
   if (sequenciaMaquina.length === sequenciaJogador.length) {
-    return tratativaAcerto({vezJogador, sequenciaMaquina, jogadaMaquina, paragrafoAvisoInicioJogo})
+    return tratativaAcerto({
+      vezJogador,
+      sequenciaMaquina,
+      jogadaMaquina,
+      paragrafoAvisoInicioJogo,
+    });
   }
 }
+
+export const __test__ = { tratativaDeDerrota, tratativaAcerto };

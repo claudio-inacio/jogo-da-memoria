@@ -4,7 +4,6 @@ import { atualizaRankingJogador } from '../controle-ranking/useControleDeRanking
 import { addPontuacaoAtual } from '../pontuacao-atual/addPontuacaoAtual.js';
 let sequenciaJogador = [];
 let qtdAcertos = 0;
-const containerReiniciarJogo = document.getElementById('container-reset-jogo');
 const pontuacaoAtual = document.getElementById('pontos-atuais');
 export function atualizaQtdAcertos(qtd) {
     qtdAcertos = qtd;
@@ -13,13 +12,13 @@ export function obterQtdAcertos() {
     return qtdAcertos;
 }
 function tratativaDeDerrota({ vezJogador, sequenciaMaquina, jogadorAtual, handleResetArrayMaquina, paragrafoAvisoInicioJogo, }) {
+    const containerReiniciarJogo = document.getElementById('container-reset-jogo');
     vezJogador = false;
     sequenciaJogador = [];
     habilitarTodosBotoes(vezJogador);
     atualizaQtdAcertos(sequenciaMaquina.length - 1 || 0);
     localStorage.setItem('ultimaPontuacao', qtdAcertos.toString());
     handleResetArrayMaquina();
-    sequenciaMaquina = [];
     paragrafoAvisoInicioJogo.innerText = `Você Perdeu :( ${jogadorAtual}, sua pontuação foi: ${qtdAcertos}`;
     setTimeout(() => {
         paragrafoAvisoInicioJogo.innerText =
@@ -51,10 +50,22 @@ export function validadorDeJogada({ vezJogador, jogada, sequenciaMaquina, handle
     sequenciaJogador.push(jogada);
     const posicaoAtual = sequenciaJogador.length === 0 ? 0 : sequenciaJogador.length - 1;
     if (sequenciaMaquina[posicaoAtual] !== sequenciaJogador[posicaoAtual]) {
-        return tratativaDeDerrota({ jogadorAtual, handleResetArrayMaquina, vezJogador, paragrafoAvisoInicioJogo, sequenciaMaquina });
+        return tratativaDeDerrota({
+            jogadorAtual,
+            handleResetArrayMaquina,
+            vezJogador,
+            paragrafoAvisoInicioJogo,
+            sequenciaMaquina,
+        });
     }
     if (sequenciaMaquina.length === sequenciaJogador.length) {
-        return tratativaAcerto({ vezJogador, sequenciaMaquina, jogadaMaquina, paragrafoAvisoInicioJogo });
+        return tratativaAcerto({
+            vezJogador,
+            sequenciaMaquina,
+            jogadaMaquina,
+            paragrafoAvisoInicioJogo,
+        });
     }
 }
+export const __test__ = { tratativaDeDerrota, tratativaAcerto };
 //# sourceMappingURL=validarJogada.js.map
