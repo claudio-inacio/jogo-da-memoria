@@ -1,24 +1,36 @@
 import {
-  ascenderLuzTrianguloCima,
-  apagarLuzTrianguloCima,
-  ascenderLuzTrianguloBaixo,
-  apagarLuzTrianguloBaixo,
-  ascenderLuzTrianguloEsquerda,
-  apagarLuzTrianguloEsquerda,
-  ascenderLuzTrianguloDireita,
-  apagarLuzTrianguloDireita,
+  habilitarBotoes,
+  habilitarTodosBotoes,
+} from './funcoes-utilitarias/habilitar-botoes/habilitarBotoes.js';
+import { geradorDeNumeroAleatorio } from './funcoes-utilitarias/numeros-aleatorios/geradorDeNumeroAleatorio.js';
+import { funcaoPiscarLuz } from './funcoes-utilitarias/piscar-luz/funcaoPiscarLuz.js';
+import { addPontuacaoAtual } from './funcoes-utilitarias/pontuacao-atual/addPontuacaoAtual.js';
+
+import {
+  atualizaRankingJogador,
+  exibirRanking,
+  obterRanking,
+} from './funcoes-utilitarias/controle-ranking/useControleDeRanking.js';
+import {
+  controladorLuzes,
+  // apagarLuzTrianguloCima,
+  // ascenderLuzTrianguloBaixo,
+  // apagarLuzTrianguloBaixo,
+  // ascenderLuzTrianguloEsquerda,
+  // apagarLuzTrianguloEsquerda,
+  // ascenderLuzTrianguloDireita,
+  // apagarLuzTrianguloDireita,
 } from './luzes.js';
 import {
-  numeroAleatorio,
-  piscarLuz,
-  habilitarBotoes,
-  addPontuacaoAtual,
-  verficarMelhorPontuacao,
-} from './utils.js';
+  atualizaQtdAcertos,
+  obterQtdAcertos,
+  validadorDeJogada,
+} from './funcoes-utilitarias/validador-jogada/validarJogada.js';
+
 let vezJogador = false;
-let qtdAcertos = 0;
+
+// let qtdAcertos = 0;
 let sequenciaMaquina: number[] = [];
-let sequenciaJogador: number[] = [];
 let jogadorAtual = '';
 const maximoDeNumerosAleatorio = 4;
 const tempoLuzAcesa = {
@@ -28,9 +40,9 @@ const tempoLuzAcesa = {
   DIFICIL: 300,
 };
 let dificuldadeSelecionada = tempoLuzAcesa.FACIL;
-
 const modal = document.getElementById('modal') as HTMLDivElement;
 const menuStart = document.getElementById('menu-redondo') as HTMLDivElement;
+const rankingInicial = obterRanking();
 const botaoAbrirModalInicioPartida = document.getElementById(
   'botao-comecar-jogo'
 ) as HTMLButtonElement;
@@ -64,123 +76,81 @@ const ultimosPontos = document.getElementById(
   'ultimos-pontos'
 ) as HTMLParagraphElement;
 let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
+const paragrafoAvisoInicioJogo = document.createElement('p');
+menuStart.append(paragrafoAvisoInicioJogo);
 
+const handleResetArrayMaquina = () => {
+  sequenciaMaquina = [];
+};
 
 document.addEventListener('DOMContentLoaded', () => {
+  exibirRanking(rankingInicial);
+  const result = obterQtdAcertos();
   ultimosPontos.innerHTML = ultimaPontuacao.toString();
   botaoTopo?.addEventListener('click', () => {
-    piscarLuz(
-      ascenderLuzTrianguloCima,
-      apagarLuzTrianguloCima,
+    funcaoPiscarLuz(
+      () => controladorLuzes({ posicao: 'cima', estado: 'aceso' }),
+      () => controladorLuzes({ posicao: 'cima', estado: 'apagado' }),
       tempoLuzAcesa.CLIQUE_JOGADOR
     );
-    validarSequenciaJogador(1);
+    prepararDadosParavalidarJogada(1);
   });
   botaoBaixo?.addEventListener('click', () => {
-    piscarLuz(
-      ascenderLuzTrianguloBaixo,
-      apagarLuzTrianguloBaixo,
+    funcaoPiscarLuz(
+      () => controladorLuzes({ posicao: 'baixo', estado: 'aceso' }),
+      () => controladorLuzes({ posicao: 'baixo', estado: 'apagado' }),
       tempoLuzAcesa.CLIQUE_JOGADOR
     );
-    validarSequenciaJogador(2);
+    prepararDadosParavalidarJogada(2);
   });
   botaoEsquerda?.addEventListener('click', () => {
-    piscarLuz(
-      ascenderLuzTrianguloEsquerda,
-      apagarLuzTrianguloEsquerda,
+    funcaoPiscarLuz(
+      () => controladorLuzes({ posicao: 'esquerda', estado: 'aceso' }),
+      () => controladorLuzes({ posicao: 'esquerda', estado: 'apagado' }),
       tempoLuzAcesa.CLIQUE_JOGADOR
     );
-    validarSequenciaJogador(3);
+    prepararDadosParavalidarJogada(3);
   });
   botaoDireita?.addEventListener('click', () => {
-    piscarLuz(
-      ascenderLuzTrianguloDireita,
-      apagarLuzTrianguloDireita,
+    funcaoPiscarLuz(
+      () => controladorLuzes({ posicao: 'direita', estado: 'aceso' }),
+      () => controladorLuzes({ posicao: 'direita', estado: 'apagado' }),
       tempoLuzAcesa.CLIQUE_JOGADOR
     );
-    validarSequenciaJogador(4);
+    prepararDadosParavalidarJogada(4);
   });
 });
 
-
-
-function validarSequenciaJogador(jogada: number): void {
-  if (!vezJogador) return;
-  sequenciaJogador.push(jogada);
-  const posicaoAtual =
-    sequenciaJogador.length === 0 ? 0 : sequenciaJogador.length - 1;
-  if (sequenciaMaquina[posicaoAtual] !== sequenciaJogador[posicaoAtual]) {
-    vezJogador = false;
-    habilitarBotoes(vezJogador);
-    qtdAcertos = sequenciaMaquina.length - 1 || 0;
-    localStorage.setItem('ultimaPontuacao', qtdAcertos.toString());
-    sequenciaJogador = [];
-    sequenciaMaquina = [];
-    paragrafoAvisoInicioJogo.innerText = `Game Over! ${jogadorAtual}, sua pontuação foi: ${qtdAcertos}`;
-    setTimeout(() => {
-      paragrafoAvisoInicioJogo.innerText =
-        'Desanima não! Bora pra mais uma tentativa.';
-    }, 5000);
-    setTimeout(() => {
-      paragrafoAvisoInicioJogo.innerText = '';
-      containerReiniciarJogo.classList.remove('display');
-    }, 10000);
-    verficarMelhorPontuacao(jogadorAtual, qtdAcertos);
-    return;
-  }
-
-  for (let contador = 0; contador < sequenciaMaquina.length; contador++) {
-    if (
-      sequenciaMaquina.length === sequenciaJogador.length &&
-      sequenciaMaquina[contador] === sequenciaJogador[contador]
-    ) {
-      qtdAcertos++;
-      addPontuacaoAtual(qtdAcertos);
-      vezJogador = false;
-      habilitarBotoes(vezJogador);
-      sequenciaJogador = [];
-      paragrafoAvisoInicioJogo.innerText = 'Parabéns você acertou!.';
-
-      setTimeout(() => {
-        paragrafoAvisoInicioJogo.innerText = 'Faça a nova sequência.';
-
-        setTimeout(() => {
-          jogadaMaquina();
-        }, 2000);
-      }, 2000);
-    }
-  }
-}
-
 async function jogadaMaquina(): Promise<void> {
-  sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
+  console.log({ sequenciaMaquina });
+  sequenciaMaquina.push(geradorDeNumeroAleatorio(maximoDeNumerosAleatorio));
   for (const numero of sequenciaMaquina) {
     switch (numero) {
       case 1:
-        await piscarLuz(
-          ascenderLuzTrianguloCima,
-          apagarLuzTrianguloCima,
+        await funcaoPiscarLuz(
+          () => controladorLuzes({ posicao: 'cima', estado: 'aceso' }),
+          () => controladorLuzes({ posicao: 'cima', estado: 'apagado' }),
           dificuldadeSelecionada
         );
         break;
       case 2:
-        await piscarLuz(
-          ascenderLuzTrianguloBaixo,
-          apagarLuzTrianguloBaixo,
+        await funcaoPiscarLuz(
+          () => controladorLuzes({ posicao: 'baixo', estado: 'aceso' }),
+          () => controladorLuzes({ posicao: 'baixo', estado: 'apagado' }),
           dificuldadeSelecionada
         );
         break;
       case 3:
-        await piscarLuz(
-          ascenderLuzTrianguloEsquerda,
-          apagarLuzTrianguloEsquerda,
+        await funcaoPiscarLuz(
+          () => controladorLuzes({ posicao: 'esquerda', estado: 'aceso' }),
+          () => controladorLuzes({ posicao: 'esquerda', estado: 'apagado' }),
           dificuldadeSelecionada
         );
         break;
       case 4:
-        await piscarLuz(
-          ascenderLuzTrianguloDireita,
-          apagarLuzTrianguloDireita,
+        await funcaoPiscarLuz(
+          () => controladorLuzes({ posicao: 'direita', estado: 'aceso' }),
+          () => controladorLuzes({ posicao: 'direita', estado: 'apagado' }),
           dificuldadeSelecionada
         );
         break;
@@ -189,10 +159,20 @@ async function jogadaMaquina(): Promise<void> {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
   vezJogador = true;
-  habilitarBotoes(vezJogador);
+  habilitarTodosBotoes(vezJogador);
   paragrafoAvisoInicioJogo.innerText = 'Sua vez!';
 }
-
+const prepararDadosParavalidarJogada = (jogada: number) => {
+  validadorDeJogada({
+    jogada: jogada,
+    vezJogador,
+    sequenciaMaquina,
+    paragrafoAvisoInicioJogo,
+    handleResetArrayMaquina,
+    jogadorAtual,
+    jogadaMaquina,
+  });
+};
 botaoAbrirModalInicioPartida.addEventListener('click', () => {
   modal.classList.remove('hidden');
 });
@@ -207,14 +187,11 @@ botaoFecharModal.addEventListener('click', () => {
   modal.classList.add('hidden');
 });
 
-const paragrafoAvisoInicioJogo = document.createElement('p');
-menuStart.append(paragrafoAvisoInicioJogo);
-
 function avisoReinicioPartida() {
   let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
   ultimosPontos.innerHTML = ultimaPontuacao.toString();
-  qtdAcertos = 0;
-  addPontuacaoAtual(qtdAcertos);
+  atualizaQtdAcertos(0);
+  addPontuacaoAtual(pontuacaoAtual, 0);
   paragrafoAvisoInicioJogo.innerText =
     'Boaaa! Desiste não, agora você vai destruir...';
   setTimeout(() => {
@@ -227,8 +204,8 @@ function avisoReinicioPartida() {
 function avisoInicioPartida() {
   let ultimaPontuacao = localStorage.getItem('ultimaPontuacao') || '0';
   ultimosPontos.innerHTML = ultimaPontuacao.toString();
-  qtdAcertos = 0;
-  addPontuacaoAtual(qtdAcertos);
+  atualizaQtdAcertos(0);
+  addPontuacaoAtual(pontuacaoAtual, 0);
 
   const mensagemDeEscolha = {
     [tempoLuzAcesa.FACIL]: 'Ótima escolha para praticar!',
@@ -241,7 +218,6 @@ function avisoInicioPartida() {
     [tempoLuzAcesa.MEDIO]: 'Bora lá, você ja sabe como funciona né...',
     [tempoLuzAcesa.DIFICIL]: 'Nem pisca pra não perder a sequencia em...',
   };
-  // sequenciaMaquina.push(numeroAleatorio(maximoDeNumerosAleatorio));
   botaoAbrirModalInicioPartida.classList.add('display');
   paragrafoAvisoInicioJogo.innerText =
     mensagemDeEscolha[dificuldadeSelecionada] || 'Ótima Escolha !';
@@ -279,5 +255,3 @@ formInicioJogo.addEventListener('submit', (event) => {
 
   avisoInicioPartida();
 });
-
-// jogadaMaquina();
