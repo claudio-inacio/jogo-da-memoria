@@ -8,7 +8,7 @@ O objetivo do jogo é memorizar e reproduzir a sequência de cores que vão asce
 
 JavaScript & TypeScript → desenvolvimento robusto e tipado
 
-Jest / Testing Library → testes unitários e de integração
+Jest → testes unitários
 
 CSS Styled Components → estilização moderna e responsiva
 
